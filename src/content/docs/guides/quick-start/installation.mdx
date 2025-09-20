@@ -1,0 +1,91 @@
+---
+title: Installation
+---
+
+:::note
+Due to the unique nature of its filesystem and package management, Reskin currently does not support NixOS.
+:::
+
+Reskin can be installed in 3 different ways outlined below. Before proceeding, please make sure you have installed all [prerequisites](/guides/prerequisites/).
+
+### Pre-built Binary
+
+This is the fastest and easiest way to get started. Simply download the pre-built binary and make it executable.
+
+1. Go to the [releases](https://github.com/iamnotmega/reskin/releases) page
+
+2. Download the binary
+
+3. Make the binary executable:
+
+```bash
+chmod +x reskin
+```
+
+4. Run the binary:
+
+```bash
+./reskin
+```
+
+### Manual Installation
+
+:::caution
+This installation method is not recommended for beginners and should only be used by advanced users. If you are a beginner, we strongly suggest using a pre-built binary instead.
+:::
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/iamnotmega/reskin
+```
+
+2. Change to the cloned repository:
+
+```bash
+cd reskin/src-tauri
+```
+
+3. Install the Node modules:
+
+```bash
+npm install
+```
+
+4. Build the frontend:
+
+```bash
+npm run build
+```
+
+5. Build the binary:
+
+```bash
+cargo build --release
+```
+
+### AUR (Arch User Repository)
+
+:::note
+Please note that this method of installation only works on Arch Linux or distributions based on it.
+:::
+
+1. If you haven't already, install an AUR helper like `yay`:
+
+```bash
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+2. Install Reskin:
+
+```bash
+yay -S reskin
+```
+
+For nightly preview builds, use:
+
+```bash
+yay -S reskin-git
+```

@@ -1,0 +1,125 @@
+---
+title: Prerequisites
+---
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+In order to start using Reskin, you will need to install some dependencies.
+
+* [Rust](#rust)
+* [Node.js](#nodejs)
+* [System Dependencies](#system-dependencies)
+
+---
+
+### Rust
+
+Reskin is built with Rust and requires it to function properly. Install Rust using one of following methods. You can view more installation methods at https://www.rust-lang.org/tools/install.
+
+Install via [rustup](https://github.com/rust-lang/rustup):
+```bash
+curl --proto '=https' --tlsv1.2 [https://sh.rustup.rs](https://sh.rustup.rs) -sSf | sh
+```
+
+Install via your distributions package manager:
+<Tabs>
+  <TabItem label="Arch">
+    ```bash
+    sudo pacman -S rust cargo nodejs npm webkit2gtk xdg-utils \
+        desktop-file-utils git
+    ```
+  </TabItem>
+  <TabItem label="Debian">
+    ```bash
+    sudo apt install rustc cargo nodejs npm \
+        libwebkit2gtk-4.1-dev xdg-utils desktop-file-utils \
+        git
+    ```
+  </TabItem>
+  <TabItem label="Fedora">
+    ```bash
+    sudo dnf install rustc cargo nodejs npm \
+        webkit2gtk4.1-devel xdg-utils desktop-file-utils \
+        git
+    ```
+  </TabItem>
+  <TabItem label="openSUSE">
+    ```bash
+    sudo zypper install rust cargo nodejs npm webkit2gtk-devel \
+    libappindicator-devel librsvg-devel
+    ```
+  </TabItem>
+  <TabItem label="Gentoo">
+    ```bash
+    sudo emerge --ask dev-lang/rust dev-vcs/git net-libs/nodejs \
+    dev-libs/libappindicator app-misc/xdg-utils \
+    dev-libs/libappindicator net-libs/webkit-gtk
+    ```
+  </TabItem>
+</Tabs>
+
+### Node.js
+
+Node.js is a JavaScript runtime that Reskin uses to build its frontend. You'll need both Node.js and its package manager, `npm`.
+
+<Tabs>
+<TabItem label="Arch">
+```bash
+sudo pacman -S nodejs npm
+```
+</TabItem>
+<TabItem label="Debian">
+```bash
+sudo apt install nodejs npm 
+```
+</TabItem>
+<TabItem label="Fedora">
+```bash
+sudo dnf install nodejs npm
+```
+</TabItem>
+<TabItem label="openSUSE">
+```bash
+sudo zypper install nodejs npm
+```
+</TabItem>
+<TabItem label="Gentoo">
+```bash
+sudo emerge --ask net-libs/nodejs 
+```
+</TabItem>
+</Tabs>
+
+
+### System Dependencies
+
+These are the system-level libraries and tools that Reskin needs to function and integrate with your desktop environment.
+
+<Tabs>
+  <TabItem label="Arch">
+    ```bash
+    sudo pacman -S webkit2gtk xdg-utils desktop-file-utils git
+    ```
+  </TabItem>
+  <TabItem label="Debian">
+    ```bash
+    sudo apt install libwebkit2gtk-4.1-dev xdg-utils desktop-file-utils git
+    ```
+  </TabItem>
+  <TabItem label="Fedora">
+    ```bash
+    sudo dnf install webkit2gtk4.1-devel xdg-utils desktop-file-utils git
+    ```
+  </TabItem>
+  <TabItem label="openSUSE">
+    ```bash
+    sudo zypper install webkit2gtk-devel xdg-utils desktop-file-utils git
+    ```
+  </TabItem>
+  <TabItem label="Gentoo">
+    ```bash
+    sudo emerge --ask net-libs/webkit-gtk app-misc/xdg-utils desktop-file-utils git
+    ```
+  </TabItem>
+</Tabs>
+
+If your distribution is not listed here, feel free to [open an issue](https://github.com/iamnotmega/reskin/issues).

@@ -1,0 +1,19 @@
+{
+  "name": "starlight",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.5",
+    "@astrojs/starlight": "^0.32.3",
+    "astro": "^5.1.5",
+    "sharp": "^0.32.5",
+    "tslib": "^2.8.1"
+  }
+}
