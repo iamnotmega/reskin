@@ -1,0 +1,266 @@
+{
+  "_META": {
+    "version": "1.5.0",
+    "translators": [
+      "kanekiusesarch"
+    ],
+    "lastEdited": "18/10/2025",
+    "language": "Nederlands"
+  },
+  "authmodal": {
+    "disclaimer": "Door een Reskin-account aan te maken of te gebruiken, ga je akkoord met onze Servicevoorwaarden en ons Privacybeleid.",
+    "title": {
+      "title.reset": "Wachtwoord opnieuw instellen",
+      "title.login": "login",
+      "title.signup": "Account aanmaken"
+    },
+    "placeholder": {
+      "placeholder.email_login": "E-mail (vereist om in te loggen)",
+      "placeholder.email_signup": "E-mail (vereist, gebruikt voor inloggen en wachtwoordherstel)",
+      "placeholder.username": "Gebruikersnaam",
+      "placeholder.password": "Wachtwoord"
+    },
+    "button": {
+      "button.login": "Inloggen",
+      "button.signup": "Account aanmaken"
+    },
+    "status": {
+      "status.logging_in": "Bezig met inloggen...",
+      "status.signing_up": "Bezig met registreren...",
+      "status.email_required": "Voer je e-mailadres in om in te loggen.",
+      "status.login_failed": "Inloggen mislukt",
+      "status.signup_failed": "Registratie mislukt"
+    },
+    "link": {
+      "link.no_account_prefix": "Nog geen account?",
+      "link.sign_up": "Account aanmaken",
+      "link.forgot_password": "Wachtwoord vergeten?",
+      "link.have_account_prefix": "Heb je al een account?",
+      "link.log_in": "Inloggen"
+    }
+  },
+  "configurationfiles": {
+    "title": "Configuratiebestanden",
+    "dropdown": {
+      "dropdown.default": "Selecteer configuratietype",
+      "dropdown.custom": "aangepast"
+    },
+    "info": {
+      "info.file_label": "Bestand:",
+      "info.destination_label": "Bestemming:"
+    },
+    "button": {
+      "button.apply": " Configuratie toepassen",
+      "button.edit": " Bewerken"
+    },
+    "status": {
+      "status.no_file": "Selecteer een bestand en een configuratietype!",
+      "status.applying": "Applying {selectedFile.name} → {destPath} ...",
+      "status.success": "Configuratie succesvol toegepast! ",
+      "status.failure": "Configuratie toepassen mislukt "
+    }
+  },
+  "marketplace": {
+    "button": {
+      "upload": "Upload een thema"
+    },
+    "status": {
+      "loading": "Laden..."
+    },
+    "header": {
+      "title": "Marktplaats"
+    }
+  },
+  "setnewpassword": {
+    "placeholder": {
+      "placeholder.recovery_email": "Voer het e-mailadres van je account in"
+    },
+    "button": {
+      "button.send_recovery": "Wachtwoordherstelmail verzenden",
+      "button.back_to_login": "Terug naar inloggen"
+    },
+    "status": {
+      "status.sending_recovery": "Bezig met verzenden...",
+      "status.recovery_sent": "Wachtwoordherstelmail verzonden! Controleer je inbox.",
+      "status.recovery_send_failure": "Verzenden van herstelmail mislukt."
+    }
+  },
+  "settings": {
+    "title": "Instellingen",
+    "section": {
+      "section.general": "Algemeen",
+      "section.about": "Over"
+    },
+    "label": {
+      "label.install_location": "Locatie van thema-installatie:",
+      "label.auto_apply": "Thema automatisch toepassen na installatie",
+      "label.backup_config": "Huidig configuratiebestand back-uppen",
+      "label.language": "Taal",
+      "label.app_version": "App-versie:"
+    },
+    "tooltip": {
+      "tooltip.install_location": "Stel de locatie in waar thema's worden geïnstalleerd.",
+      "tooltip.auto_apply": "Pas het thema automatisch toe na installatie.",
+      "tooltip.backup_config": "Maak een back-up van het huidige configuratiebestand voordat je een nieuw toepast.",
+      "tooltip.language": "De taal van de applicatie."
+    },
+    "option": {
+      "option.language_en": "Engels",
+      "option_language_ee": "Ests"
+    }
+  },
+  "sidenav": {
+    "label": {
+      "label.home": "Startpagina",
+      "label.marketplace": "Marktplaats",
+      "label.theme_bundler": "Thema-bundelaar",
+      "label.theme_installer": "Thema-installatieprogramma",
+      "label.configurationfiles": "Configuratiebestanden",
+      "label.settings": "Instellingen",
+      "label.log_in": "Inloggen",
+      "label.log_out": "Inloggen"
+    }
+  },
+  "bundler": {
+    "title": "Reskin-bundelaar",
+    "manifest": {
+      "manifest.name": "Themanaam",
+      "manifest.author": "Auteur",
+      "manifest.description": "Beschrijving",
+      "manifest.version": "Versie",
+      "manifest.license_default": "Selecteer licentie",
+      "manifest.tag_placeholder": "Voeg een tag toe, gevolgd door een komma",
+      "manifest.description_default": "Gemaakt met Reskin"
+    },
+    "dropzone": {
+      "dropzone.default_title": "Sleep hier een themamap naartoe",
+      "dropzone.default_desc": "Of klik om te bladeren",
+      "dropzone.selected_title": "Geselecteerd: {selectedFolder.name}",
+      "dropzone.selected_desc": "Sleep een andere map om te vervangen of klik om te bladeren"
+    },
+    "button": {
+      "button.bundle": "Bundel .reskin"
+    },
+    "status": {
+      "status.loading_api": "Tauri API laden...",
+      "status.no_folder": "Selecteer of sleep een themamap!",
+      "status.not_directory": "Sleep een map, geen bestand!",
+      "status.fields_empty": "Vul themanaam, auteur en versie in!",
+      "status.select_failed": "Mapselectie mislukt: {error}",
+      "status.success_select": "Geselecteerde map: {folderName}",
+      "status.reading_files": "Themabestanden lezen...",
+      "status.bundling": "Thema bundelen vanuit geselecteerde map...",
+      "status.bundle_success": "Thema succesvol gebundeld! Opgeslagen in: {outputPath}",
+      "status.bundle_failure": "Bundelen mislukt: {error.message}"
+    }
+  },
+  "themecard": {
+    "fallback": {
+      "fallback.name": "Untitled Theme",
+      "fallback.author": "Unknown",
+      "fallback.preview_alt": "Theme preview"
+    },
+    "label": {
+      "label.author_prefix": "by"
+    },
+    "status": {
+      "status.missing_file": "Theme file missing!",
+      "status.reinstall_theme": "Please reinstall the theme."
+    }
+  },
+  "themedetails": {
+    "status": {
+      "status.loading": "Loading…",
+      "status.install_success": "Theme installed successfully!",
+      "status.install_failure": "Failed to install theme.",
+      "status.report_submitted": "Report submitted successfully!",
+      "status.report_failure": "Failed to submit report."
+    },
+    "label": {
+      "label.author_prefix": "by"
+    },
+    "button": {
+      "button.apply": "🎨 Apply Theme",
+      "button.install": "⬇️ Install Theme",
+      "button.report": "🚨 Report"
+    },
+    "prompt": {
+      "prompt.report_reason": "Please explain why you are reporting this theme:"
+    },
+    "fallback": {
+      "fallback.preview_alt": "Theme preview",
+      "fallback.error_message": "Failed to submit report."
+    }
+  },
+  "themeinstaller": {
+    "title": "🎨 Reskin Installer",
+    "dragdrop": {
+      "default_title": "📄 Drag & Drop .reskin File Here",
+      "default_desc": "Of klik om te bladeren",
+      "selected_title": "📄 Selected: {selectedFile.name}",
+      "selected_desc": "Drop another .reskin file to replace or click to browse"
+    },
+    "file_select": {
+      "title": "Select .reskin Theme File",
+      "filter_name": "Reskin Theme Files"
+    },
+    "info_preview": {
+      "header": "📋 Theme Information",
+      "name": "Name:",
+      "author": "Author:",
+      "description": "Description:",
+      "version": "Version:",
+      "tags": "Tags:",
+      "license": "License:"
+    },
+    "button": {
+      "install": "📥 Install Theme"
+    },
+    "status": {
+      "loading_api": "Tauri API laden...",
+      "error_not_reskin": "Please drop a .reskin file!",
+      "success_select": "Selected file: {filePath}",
+      "error_select_failed": "File selection failed, using fallback...",
+      "error_info_load": "Could not load theme preview",
+      "info_loaded": "Theme info loaded successfully",
+      "installing": "Installing theme...",
+      "install_success": "Theme installed successfully!",
+      "install_failure": "Installation failed: {error.message || error}",
+      "error_no_theme_to_apply": "No theme loaded to apply!",
+      "applying": "Applying theme...",
+      "apply_success": "Theme applied successfully!",
+      "apply_failure": "Failed to apply theme: {error.message || error}"
+    }
+  },
+  "uploadtheme": {
+    "title": "📤 Upload Theme",
+    "info_preview": {
+      "header": "Preview:",
+      "name": "Name:",
+      "author": "Author:",
+      "description": "Description:",
+      "version": "Version:",
+      "tags": "Tags:",
+      "license": "License:",
+      "fallback_author": "Unknown"
+    },
+    "button": {
+      "default": "Upload Theme",
+      "uploading": "Uploading..."
+    },
+    "status": {
+      "initial": "Pick a .reskin file",
+      "metadata_loading": "Reading theme metadata...",
+      "metadata_loaded": "Metadata loaded! Ready to upload",
+      "metadata_failed": "Failed to read theme metadata",
+      "checking_login": "Checking login...",
+      "not_logged_in": "Not logged in. Please log in first!",
+      "checking_duplicates": "Checking for duplicates...",
+      "duplicate_found": "This theme file already exists!",
+      "uploading_file": "Uploading file...",
+      "saving_metadata": "Saving metadata...",
+      "upload_success": "Upload successful!",
+      "upload_failure": "Upload failed: {error}"
+    }
+  }
+}
