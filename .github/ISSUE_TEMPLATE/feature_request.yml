@@ -1,0 +1,29 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Reskin
+labels: enhancement
+assignees:
+  - iamnotmega
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the feature
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Problem / Motivation
+      description: Explain why this feature is needed
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your idea or solution
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context / Screenshots
+      description: Extra context or screenshots

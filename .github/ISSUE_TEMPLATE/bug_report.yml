@@ -1,0 +1,44 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in Reskin
+labels: bug
+assignees:
+  - iamnotmega
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the bug
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the bug
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+
+  - type: dropdown
+    id: nightly
+    attributes:
+      label: Does this occur on the nightly build?
+      description: Select yes if this happens on the nightly build
+      options:
+        - "Yes"
+        - No
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context / Screenshots
+      description: Extra details, logs, or screenshots
