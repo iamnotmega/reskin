@@ -55,7 +55,7 @@
     },
     "status": {
       "status.no_file": "Selecteer een bestand en een configuratietype!",
-      "status.applying": "Applying {selectedFile.name} → {destPath} ...",
+      "status.applying": "invoegen {selectedFile.name} → {destPath} ...",
       "status.success": "Configuratie succesvol toegepast! ✅",
       "status.failure": "Configuratie toepassen mislukt ❌"
     }
