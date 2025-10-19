@@ -1,0 +1,265 @@
+{
+    "_META": {
+      "version": "1.5.2",
+      "translators": ["axinux"],
+      "lastEdited": "19/10/2025",
+      "language": "Latvian"
+    },
+    "authmodal": {
+      "disclaimer": "Izveidojot vai lietojot Reskin kontu, jūs piekrītat mūsu Pakalpojumu noteikumiem un Privātuma politikai.",
+      "title": {
+        "title.reset": "Atiestatīt paroli",
+        "title.login": "Pieslēgties",
+        "title.signup": "Reģistrēties"
+      },
+      "placeholder": {
+          "placeholder.email_login": "E-pasts (nepieciešams pieslēgšanās laikam)",
+          "placeholder.email_signup": "E-pasts (nepieciešams, izmantots pieslēgšanās un paroles atiestatīšanai)",
+          "placeholder.username": "Lietotājvārds",
+          "placeholder.password": "Parole"
+      },
+      "button": {
+        "button.login": "Pieslēgties",
+        "button.signup": "Reģistrēties"
+      },
+      "status": {
+        "status.logging_in": "Pieslēdzas...",
+        "status.signing_up": "Reģistrējas...",
+        "status.email_required": "Lūdzu, ievadiet savu e-pasta adresi, lai pieslēgtos.",
+        "status.login_failed": "Pieslēgšanās neveiksmīga",
+        "status.signup_failed": "Reģistrācija neveiksmīga"
+      },
+      "link": {
+        "link.no_account_prefix": "Nav jums konts?",
+        "link.sign_up": "Reģistrēties",
+        "link.forgot_password": "Aizmirsāt paroli?",
+        "link.have_account_prefix": "Jau ir jums konts?",
+        "link.log_in": "Pieslēgties"
+      }
+  
+    },
+    "configurationfiles": {
+      "title": "🔧 Konfigurācijas faili",
+      "dropdown": {
+        "dropdown.default": "Izvēlies konfigurācijas tipu",
+        "dropdown.custom": "custom"
+      },
+      "info": {
+        "info.file_label": "Faila:",
+        "info.destination_label": "Mērķis:"
+      },
+      "button": {
+        "button.apply": "🎨 Aplikēt konfigurāciju",
+        "button.edit": "✏️ Rediģēt"
+      },
+      "status": {
+        "status.no_file": "Lūdzu, izvēlies failu un konfigurācijas tipu!",
+        "status.applying": "Aplikē {selectedFile.name} uz {destPath} ...",
+        "status.success": "Konfigurācija aplikēta veiksmīgi! ✅",
+        "status.failure": "Konfigurācija aplikēšana neveiksmīga ❌"
+      }
+    },
+    "marketplace": {
+      "button": {
+          "upload": "Augšupielādēt tēmu"
+      },
+      "status": {
+          "loading": "Ielādē..."
+      },
+      "header": {
+          "title": "Marktplace"
+      }
+    },
+    "setnewpassword": {
+      "placeholder": {
+          "placeholder.recovery_email": "Ievadiet savu e-pasta adresi"
+      },
+      "button": {
+        "button.send_recovery": "Sūtīt paroles atiestatīšanas e-pastu",
+        "button.back_to_login": "Atpakaļ pieslēgties"
+      },
+       "status": {
+        "status.sending_recovery": "Sūtī...",
+        "status.recovery_sent": "Paroles atiestatīšanas e-pastu sūtīts! Pārbaudiet savu ienākumu.",
+        "status.recovery_send_failure": "Paroles atiestatīšanas e-pastu sūtīšana neveiksmīga."
+      }
+    },
+    "settings": {
+        "title": "Iestatījumi",
+      "section": {
+        "section.general": "Vispārīgi",
+        "section.about": "Par"
+      },
+      "label": {
+        "label.install_location": "Tēmas instalēšanas vieta:",
+        "label.auto_apply": "Automātiski pielietot tēmu pēc instalēšanas",
+        "label.backup_config": "Atstatīt pašreizējo konfigurācijas failu pirms jaunās konfigurācijas ieviešanas",
+        "label.language": "Valoda",
+        "label.app_version": "Programmas versija:"
+      },
+      "tooltip": {
+        "tooltip.install_location": "Iestatiet tēmu instalēšanas vietu.",
+        "tooltip.auto_apply": "Automātiski pielietot tēmu pēc instalēšanas.",
+        "tooltip.backup_config": "Atstatīt pašreizējo konfigurācijas failu pirms jaunās konfigurācijas ieviešanas.",
+        "tooltip.language": "Programmas valoda."
+      },
+      "option": {
+        "option.language_en": "Angļu"
+      }
+    },
+    "sidenav": {
+      "label": {
+        "label.home": "Sākums",
+        "label.marketplace": "Marktplace",
+        "label.theme_bundler": "Tēmu bundelais",
+        "label.theme_installer": "Tēmu instalētājs",
+        "label.configurationfiles": "Konfigurācijas faili",
+        "label.settings": "Iestatījumi",
+        "label.log_in": "Pieslēgties",
+        "label.log_out": "Pieslēgties"
+      }
+    },
+    "bundler": {
+      "title": "📦 Reskin bundelētājs",
+      "manifest": {
+        "manifest.name": "Tēmas nosaukums",
+        "manifest.author": "Autors",
+        "manifest.description": "Apraksts",
+        "manifest.version": "Versija",
+        "manifest.license_default": "Izvēlies licenci",
+        "manifest.tag_placeholder": "Pievieno tagu, tad komu",
+        "manifest.description_default": "Izveidots ar Reskin"
+      },
+      "dropzone": {
+        "dropzone.default_title": "📁 Velci un nomet tēmas mapi šeit",
+        "dropzone.default_desc": "Vai klikšķini, lai atlasītu",
+        "dropzone.selected_title": "📁 Atlasīts: {selectedFolder.name}",
+        "dropzone.selected_desc": "Velci vēl vienu mapi, lai aizvietotu vai klikšķini, lai atlasītu"
+      },
+      "button": {
+        "button.bundle": "📦 Bundelēt .reskin"
+      },
+      "status": {
+        "status.loading_api": "Ielādē Tauri API...",
+        "status.no_folder": "Lūdzu, izvēlies vai velci tēmas mapi!",
+        "status.not_directory": "Lūdzu, velci mapi, ne failu!",
+        "status.fields_empty": "Lūdzu, aizpildi tēmas nosaukumu,autors un versiju!",
+        "status.select_failed": "Mapes atlasīšana neveiksmīga: {error}",
+        "status.success_select": "Atlasītā mapes nosaukums: {folderName}",
+        "status.reading_files": "Lasā tēmas failus...",
+        "status.bundling": "Bundelē tēmu no atlasītās mapes...",
+        "status.bundle_success": "Tēma bundelēta veiksmīgi! Saglabāts uz: {outputPath}",
+        "status.bundle_failure": "Bundelēšana neveiksmīga: {error.message}"
+      }
+    },
+    "themecard": {
+      "fallback": {
+        "fallback.name": "Bez nosaukuma tēma",
+        "fallback.author": "Nezināms",
+        "fallback.preview_alt": "Tēmas priekšskatījums"
+      },
+      "label": {
+        "label.author_prefix": "ar"
+      },
+      "status": {
+        "status.missing_file": "Tēmas faila trūkst!",
+        "status.reinstall_theme": "Lūdzu, atinstalēt tēmu."
+      }
+    },
+    "themedetails": {
+      "status": {
+        "status.loading": "Ielādē...",
+        "status.install_success": "Tēma instalēta veiksmīgi!",
+        "status.install_failure": "Tēma instalēšana neveiksmīga.",
+        "status.report_submitted": "Ziņojums nosūtīts veiksmīgi!",
+        "status.report_failure": "Ziņojuma nosūtīšana neveiksmīga."
+      },
+      "label": {
+        "label.author_prefix": "ar"
+      },
+      "button": {
+        "button.apply": "🎨 Pielietot tēmu",
+        "button.install": "⬇️ Instalēt tēmu",
+        "button.report": "🚨 Ziņot"
+      },
+      "prompt": {
+        "prompt.report_reason": "Lūdzu, paskaidro, kāpēc jūs ziņojat par šo tēmu:"
+      },
+      "fallback": {
+        "fallback.preview_alt": "Tēmas priekšskatījums",
+        "fallback.error_message": "Ziņojuma nosūtīšana neveiksmīga."
+      }
+    },
+    "themeinstaller": {
+      "title": "🎨 Reskin instalētājs",
+      "dragdrop": {
+        "default_title": "📄 Velci un nomet .reskin failu šeit",
+        "default_desc": "Vai klikšķini, lai atlasītu",
+        "selected_title": "📄 Atlasīts: {selectedFile.name}",
+        "selected_desc": "Velci vēl vienu .reskin failu, lai aizvietotu vai klikšķini, lai atlasītu"
+      },
+      "file_select": {
+        "title": "Izvēlies .reskin tēmas failu",
+        "filter_name": "Reskin tēmas faili"
+      },
+      "info_preview": {
+        "header": "📋 Tēmas informācija",
+        "name": "Nosaukums:",
+        "author": "Autors:",
+        "description": "Apraksts:",
+        "version": "Versija:",
+        "tags": "Tagi:",
+        "license": "Licence:"
+      },
+      "button": {
+        "install": "📥 Instalēt tēmu"
+      },
+      "status": {
+        "loading_api": "Ielādē Tauri API...",
+        "error_not_reskin": "Lūdzu, velci .reskin failu!",
+        "success_select": "Atlasīts fails: {filePath}",
+        "error_select_failed": "Faila atlasīšana neveiksmīga, izmantojot aizvietojumu...",
+        "error_info_load": "Nevar ielādēt tēmas priekšskatījumu",
+        "info_loaded": "Tēmas informācija ielādēta veiksmīgi",
+        "installing": "Instalē tēmu...",
+        "install_success": "Tēma instalēta veiksmīgi!",
+        "install_failure": "Instalēšana neveiksmīga: {error.message || error}",
+        "error_no_theme_to_apply": "Nav tēmas, kuru pielietot!",
+        "applying": "Pielieto tēmu...",
+        "apply_success": "Tēma pielietota veiksmīgi!",
+        "apply_failure": "Pielietošana neveiksmīga: {error.message || error}"
+      }
+    },
+    "uploadtheme": {
+    "title": "📤 Augšupielādēt tēmu",
+    "info_preview": {
+      "header": "Priekšskatījums:",
+      "name": "Nosaukums:",
+      "author": "Autors:",
+      "description": "Apraksts:",
+      "version": "Versija:",
+      "tags": "Tagi:",
+      "license": "Licence:",
+      "fallback_author": "Nezināms"
+    },
+    "button": {
+      "default": "Augšupielādēt tēmu",
+      "uploading": "Augšupielādē..."
+    },
+    "status": {
+      "initial": "Izvēlies .reskin failu",
+      "metadata_loading": "Lasā tēmas informāciju...",
+      "metadata_loaded": "Informācija ielādēta! Gatava augšupielādēt",
+      "metadata_failed": "Tēmas informācijas lasīšana neveiksmīga",
+      "checking_login": "Pārbauda pieslēgšanos...",
+      "not_logged_in": "Nav pieslēgts. Lūdzu, pieslēdzies vispirms!",
+      "checking_duplicates": "Pārbauda dublikātus...",
+      "duplicate_found": "Šis tēmas fails jau eksistē!",
+      "uploading_file": "Augšupielādē tēmas failu...",
+      "saving_metadata": "Saglabā tēmas informāciju...",
+      "upload_success": "Augšupielādēšana veiksmīga!",
+      "upload_failure": "Augšupielādēšana neveiksmīga: {error}"
+    }
+    }
+  }
+  
