@@ -153,7 +153,7 @@
       "status.bundle_success": "Thema succesvol gebundeld! Opgeslagen in: {outputPath}",
       "status.bundle_failure": "Bundelen mislukt: {error.message}"
     }
-  {
+  },
   "themecard": {
     "fallback": {
       "fallback.name": "Naamloos thema",
