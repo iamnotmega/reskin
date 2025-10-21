@@ -1,0 +1,264 @@
+{
+  "_META": {
+    "version": "1.5.3",
+    "translators": ["iamnotmega"],
+    "lastEdited": "21/10/2025",
+    "language": "Eesti"
+  },
+  "authmodal": {
+    "disclaimer": "Reskini konto loomisega või kasutamisega nõustute meie kasutustingimuste ja privaatsuspoliitikaga.",
+    "title": {
+      "title.reset": "Parooli taastamine",
+      "title.login": "Logi sisse",
+      "title.signup": "Loo konto"
+    },
+    "placeholder": {
+        "placeholder.email_login": "Meiliaadress (kohustuslik sisselogimiseks)",
+        "placeholder.email_signup": "Meiliaadress (kohustuslik, vajatud sisselogimiseks & parooli taastamiseks)",
+        "placeholder.username": "Kasutajanimi",
+        "placeholder.password": "Parool"
+    },
+    "button": {
+      "button.login": "Logi sisse",
+      "button.signup": "Loo konto"
+    },
+    "status": {
+      "status.logging_in": "Sisselogimine...",
+      "status.signing_up": "Konto loomine...",
+      "status.email_required": "Palun sisestage meiliaadress, et sisse logida.",
+      "status.login_failed": "Sisselogimine ebaõnnestus",
+      "status.signup_failed": "Konto loomine ebaõnnestus"
+    },
+    "link": {
+      "link.no_account_prefix": "Pole kontot?",
+      "link.sign_up": "Loo konto",
+      "link.forgot_password": "Unustasid parooli?",
+      "link.have_account_prefix": "Juba on konto?",
+      "link.log_in": "Logi sisse"
+    }
+
+  },
+  "configurationfiles": {
+    "title": "🔧 Konfiguratsioonifailid",
+    "dropdown": {
+      "dropdown.default": "Vali konfiguratsiooni tüüp",
+      "dropdown.custom": "kohandatud"
+    },
+    "info": {
+      "info.file_label": "Fail:",
+      "info.destination_label": "Sihtkoht:"
+    },
+    "button": {
+      "button.apply": "🎨 Rakenda Konfiguratsioon",
+      "button.edit": "✏️ Redigeeri"
+    },
+    "status": {
+      "status.no_file": "Palun vali fail ja konfiguratsiooni tüüp!",
+      "status.applying": "Rakendatakse {selectedFile.name} → {destPath} ...",
+      "status.success": "Konfiguratsioon rakendatud! ✅",
+      "status.failure": "Konfiguratsiooni rakendamine ebaõnnestus ❌"
+    }
+  },
+  "marketplace": {
+    "button": {
+        "upload": "Lae üles teema"
+    },
+    "status": {
+        "loading": "Laadimine..."
+    },
+    "header": {
+        "title": "Teemakogu"
+    }
+  },
+  "setnewpassword": {
+    "placeholder": {
+        "placeholder.recovery_email": "Sisestage konto meiliaadress"
+    },
+    "button": {
+      "button.send_recovery": "Saada parooli taastamise meil",
+      "button.back_to_login": "Tagasi sisse logima"
+    },
+     "status": {
+      "status.sending_recovery": "Saatmine...",
+      "status.recovery_sent": "Parooli taastamise meil saadetud! Palun kontrollige oma postkasti.",
+      "status.recovery_send_failure": "Parooli taastamise meili saatmine ebaõnnestus."
+    }
+  },
+  "settings": {
+    "title": "Sätted",
+    "section": {
+      "section.general": "Üldine",
+      "section.about": "Teave"
+    },
+    "label": {
+      "label.install_location": "Teema paigaldamise asukoht:",
+      "label.auto_apply": "Automaatselt rakenda teema pärast paigaldamist",
+      "label.backup_config": "Varunda praegune konfiguratsioonifail",
+      "label.language": "Keel",
+      "label.app_version": "Rakenduse versioon:"
+    },
+    "tooltip": {
+      "tooltip.install_location": "Vali asukoht kuhu paigaldatakse teemad.",
+      "tooltip.auto_apply": "Automaatselt rakenda teema pärast selle paigaldamist.",
+      "tooltip.backup_config": "Varuna praegune konfiguratsioonifail enne selle asendamist.",
+      "tooltip.language": "Rakenduse keel."
+    },
+    "option": {
+      "option.language_en": "Inglise"
+    }
+  },
+  "sidenav": {
+    "label": {
+      "label.home": "Kodu",
+      "label.marketplace": "Teemakogu",
+      "label.theme_bundler": "Teema Pakendaja",
+      "label.theme_installer": "Teema Paigaldaja",
+      "label.configurationfiles": "Konfiguratsioonifailid",
+      "label.settings": "Sätted",
+      "label.log_in": "Logi sisse",
+      "label.log_out": "Logi välja"
+    }
+  },
+  "bundler": {
+    "title": "📦 Reskini Pakendaja",
+    "manifest": {
+      "manifest.name": "Teema Nimi",
+      "manifest.author": "Autor",
+      "manifest.description": "Kirjeldus",
+      "manifest.version": "Versioon",
+      "manifest.license_default": "Vali Litsents",
+      "manifest.tag_placeholder": "Lisa silt, siis koma",
+      "manifest.description_default": "Loodud Reskiniga"
+    },
+    "dropzone": {
+      "dropzone.default_title": "📁 Lohista teema kaust siia",
+      "dropzone.default_desc": "Või klõpsake sirvimiseks",
+      "dropzone.selected_title": "📁 Valitud: {selectedFolder.name}",
+      "dropzone.selected_desc": "Lohista teine kaust et asendada või klõpsake sirvimiseks"
+    },
+    "button": {
+      "button.bundle": "📦 Pakenda .reskin"
+    },
+    "status": {
+      "status.loading_api": "Tauri API laadimine...",
+      "status.no_folder": "Palun vali või lohista teema kaust!",
+      "status.not_directory": "Palun lohista kaust, mitte fail!",
+      "status.fields_empty": "Palun täitke Teema Nimi, Autor ja Versioon!",
+      "status.select_failed": "Kausta valimine ebaõnnestus: {error}",
+      "status.success_select": "Valitud kaust: {folderName}",
+      "status.reading_files": "Teemafailide lugemine...",
+      "status.bundling": "Teema pakendamine valitud kaustast...",
+      "status.bundle_success": "Teema pakendatud! Salvestatud asukohta: {outputPath}",
+      "status.bundle_failure": "Pakendamine ebaõnnestus: {error.message}"
+    }
+  },
+  "themecard": {
+    "fallback": {
+      "fallback.name": "Nimetu Teema",
+      "fallback.author": "Tundmatu",
+      "fallback.preview_alt": "Teema eelvaade"
+    },
+    "label": {
+      "label.author_prefix": "autor"
+    },
+    "status": {
+      "status.missing_file": "Teema fail puudub!",
+      "status.reinstall_theme": "Palun paigaldage teema uuesti."
+    }
+  },
+  "themedetails": {
+    "status": {
+      "status.loading": "Laadimine...",
+      "status.install_success": "Teema paigaldatud!",
+      "status.install_failure": "Teema paigaldamine ebaõnnestus.",
+      "status.report_submitted": "Teade esitatud!",
+      "status.report_failure": "Teate esitamine ebaõnnestus."
+    },
+    "label": {
+      "label.author_prefix": "autor"
+    },
+    "button": {
+      "button.apply": "🎨 Rakenda Teema",
+      "button.install": "⬇️ Paigalda Teema",
+      "button.report": "🚨 Teata"
+    },
+    "prompt": {
+      "prompt.report_reason": "Palun seletage miks te teatate seda teemat:"
+    },
+    "fallback": {
+      "fallback.preview_alt": "Teema eelvaade",
+      "fallback.error_message": "Teate esitamine ebaõnnestus."
+    }
+  },
+  "themeinstaller": {
+    "title": "🎨 Reskini Paigaldaja",
+    "dragdrop": {
+      "default_title": "📄 Lohista .reskin fail siia",
+      "default_desc": "Või klõpsake sirvimiseks",
+      "selected_title": "📄 Valitud: {selectedFile.name}",
+      "selected_desc": "Lohista teine .reskin fail et asendada või klõpsake sirvimiseks"
+    },
+    "file_select": {
+      "title": "Vali .reskin teemafail",
+      "filter_name": "Reskini Teemafailid"
+    },
+    "info_preview": {
+      "header": "📋 Teema Info",
+      "name": "Nimi:",
+      "author": "Autor:",
+      "description": "Kirjeldus:",
+      "version": "Versioon:",
+      "tags": "Sildid:",
+      "license": "Litsents:"
+    },
+    "button": {
+      "install": "📥 Paigalda Teema"
+    },
+    "status": {
+      "loading_api": "Loading Tauri API...",
+      "error_not_reskin": "Please drop a .reskin file!",
+      "success_select": "Selected file: {filePath}",
+      "error_select_failed": "File selection failed, using fallback...",
+      "error_info_load": "Could not load theme preview",
+      "info_loaded": "Theme info loaded successfully",
+      "installing": "Installing theme...",
+      "install_success": "Theme installed successfully!",
+      "install_failure": "Installation failed: {error.message || error}",
+      "error_no_theme_to_apply": "No theme loaded to apply!",
+      "applying": "Applying theme...",
+      "apply_success": "Theme applied successfully!",
+      "apply_failure": "Failed to apply theme: {error.message || error}"
+    }
+  },
+  "uploadtheme": {
+  "title": "📤 Lae Teema Üles",
+  "info_preview": {
+    "header": "Eelvaade:",
+    "name": "Nimi:",
+    "author": "Autor:",
+    "description": "Kirjeldus:",
+    "version": "Versioon:",
+    "tags": "Sildid:",
+    "license": "Litsents:",
+    "fallback_author": "Tundmatu"
+  },
+  "button": {
+    "default": "Lae Teema Üles",
+    "uploading": "Üleslaadimine..."
+  },
+  "status": {
+    "initial": "Vali .reskin fail",
+    "metadata_loading": "Teema info lugemine...",
+    "metadata_loaded": "Info laetud! Valmis üles laadima",
+    "metadata_failed": "Teema info lugemine ebaõnnestus.",
+    "checking_login": "Sisselogimise kontrollimine...",
+    "not_logged_in": "Pole sisse logitud. Palun logige enne sisse!",
+    "checking_duplicates": "Duplikaatide kontrollimine...",
+    "duplicate_found": "See teemafail juba eksisteerib!",
+    "uploading_file": "Faili üleslaadimine...",
+    "saving_metadata": "Info salvestamine...",
+    "upload_success": "Üles laetud!",
+    "upload_failure": "Üleslaadimine ebaõnnestus: {error}"
+  }
+  }
+}
