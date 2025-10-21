@@ -116,7 +116,7 @@
       "label.configurationfiles": "Configuration Files",
       "label.settings": "Settings",
       "label.log_in": "Log in",
-      "label.log_out": "Log in"
+      "label.log_out": "Log out"
     }
   },
   "bundler": {
