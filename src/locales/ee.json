@@ -215,19 +215,19 @@
       "install": "📥 Paigalda Teema"
     },
     "status": {
-      "loading_api": "Loading Tauri API...",
-      "error_not_reskin": "Please drop a .reskin file!",
-      "success_select": "Selected file: {filePath}",
-      "error_select_failed": "File selection failed, using fallback...",
-      "error_info_load": "Could not load theme preview",
-      "info_loaded": "Theme info loaded successfully",
-      "installing": "Installing theme...",
-      "install_success": "Theme installed successfully!",
-      "install_failure": "Installation failed: {error.message || error}",
-      "error_no_theme_to_apply": "No theme loaded to apply!",
-      "applying": "Applying theme...",
-      "apply_success": "Theme applied successfully!",
-      "apply_failure": "Failed to apply theme: {error.message || error}"
+      "loading_api": "Tauri API laadimine...",
+      "error_not_reskin": "Palun lohistage .reskin fail!",
+      "success_select": "Valitud fail: {filePath}",
+      "error_select_failed": "Faili valimine ebaõnnestus, kasutatakse tagavarameetodit...",
+      "error_info_load": "Teema eelvaate laadimine ebaõnnestus",
+      "info_loaded": "Teeme info laetud",
+      "installing": "Teema paigaldamine...",
+      "install_success": "Teema paigaldatud!",
+      "install_failure": "Paigaldamine ebaõnnestus: {error.message || error}",
+      "error_no_theme_to_apply": "Pole laetud teemat rakendamiseks!",
+      "applying": "Teema rakendamine...",
+      "apply_success": "Teema edukalt rakendatud!",
+      "apply_failure": "Teema rakendamine ebaõnnestus: {error.message || error}"
     }
   },
   "uploadtheme": {
