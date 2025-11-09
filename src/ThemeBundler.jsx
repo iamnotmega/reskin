@@ -185,7 +185,7 @@ export default function ThemeBundler() {
 
   return (
     <div id="theme-bundler-root">
-      <h1>📦 {t.bundler.title}</h1>
+      <h1>{t.bundler.title}</h1>
 
       <div className="themebundler-meta-row">
         <div className="themebundler-meta-col">
