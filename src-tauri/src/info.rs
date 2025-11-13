@@ -3,7 +3,7 @@ use std::process::Command;
 
 #[tauri::command]
 pub fn get_app_version() -> Result<String, String> {
-    Ok(env!("CARGO_PKG_VERSION").to_string())
+    Ok(env!("CARGO_PKG_VERSION").to_string()) // Get current application version from Cargo.toml
 }
 
 #[tauri::command]

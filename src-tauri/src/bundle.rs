@@ -109,7 +109,7 @@ pub fn bundle_theme_from_directory(mut request: BundleRequest) -> Result<String,
     collect_relative_files_recursive(dir_path, dir_path, &mut relative_files)?;
 
     if relative_files.is_empty() {
-        eprintln!("Warning: No files found in theme directory {}", dir);
+        eprintln!("Warning: No files found in theme directory {}", dir); // Return error when theme directory is empty
     } else {
         println!("Collected {} asset(s):", relative_files.len());
         for f in &relative_files {

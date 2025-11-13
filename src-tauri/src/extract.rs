@@ -87,22 +87,22 @@ pub fn extract_theme(bundle_path: String) -> Result<String, String> {
         }
         let filename_len = u32::from_le_bytes(filename_len_bytes) as usize;
         let mut filename_bytes = vec![0u8; filename_len];
-        file.read_exact(&mut filename_bytes)
-            .map_err(|e| format!("Failed to read filename: {}", e))?;
-        let filename = String::from_utf8_lossy(&filename_bytes).to_string();
+        file.read_exact(&mut filename_bytes) // Read filename bytes
+            .map_err(|e| format!("Failed to read filename: {}", e))?; // Return error on failure
+        let filename = String::from_utf8_lossy(&filename_bytes).to_string(); // Convert filename bytes into string
 
         let mut asset_len_bytes = [0u8; 4];
-        file.read_exact(&mut asset_len_bytes)
-            .map_err(|e| format!("Failed to read asset length: {}", e))?;
+        file.read_exact(&mut asset_len_bytes) // Read asset length bytes
+            .map_err(|e| format!("Failed to read asset length: {}", e))?; // Return error on failure
         let asset_len = u32::from_le_bytes(asset_len_bytes) as usize;
         let mut asset_data = vec![0u8; asset_len];
-        file.read_exact(&mut asset_data)
-            .map_err(|e| format!("Failed to read asset data: {}", e))?;
+        file.read_exact(&mut asset_data) // Read asset data
+            .map_err(|e| format!("Failed to read asset data: {}", e))?; // Return error on failure
 
-        let out_path = Path::new(&output_dir).join(&filename);
-        fs::write(out_path, &asset_data)
-            .map_err(|e| format!("Failed to write asset {}: {}", filename, e))?;
+        let out_path = Path::new(&output_dir).join(&filename); // Define output path
+        fs::write(out_path, &asset_data) // Write asset data to output path (/tmp/reskin by default)
+            .map_err(|e| format!("Failed to write asset {}: {}", filename, e))?; // Return error on failure
     }
 
-    Ok(format!("Theme extracted to {}", output_dir))
+    Ok(format!("Theme extracted to {}", output_dir)) // Return Ok on success
 }

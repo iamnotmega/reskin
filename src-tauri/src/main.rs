@@ -1,10 +1,10 @@
-mod info; mod file; mod extract; mod check; mod bundle; mod apply; mod recent; mod types; mod utils; mod install; mod marketplace; mod window;
-use tauri::{Manager};
+mod info; mod file; mod extract; mod check; mod bundle; mod apply; mod recent; mod types; mod utils; mod install; mod marketplace; mod window; // Import required modules
+use tauri::{Manager}; // Import other necessary crates
 
 fn main() {
 	tauri::Builder::default()
 		.plugin(tauri_plugin_opener::init())
-		.invoke_handler(tauri::generate_handler![
+		.invoke_handler(tauri::generate_handler![ // Generate the handler with all available backend commands
 			info::get_app_version, info::init,
 			file::select_folder, file::select_file,
 			extract::extract_theme_info, extract::extract_theme_info_from_file, extract::extract_theme,
@@ -25,6 +25,6 @@ fn main() {
 			}
 			Ok(())
 		})
-		.run(tauri::generate_context!())
+		.run(tauri::generate_context!()) // Run application
 		.expect("error while running tauri application");
 }
