@@ -1,8 +1,37 @@
 // Import necessary components
-use std::path::Path;
-use crate::types::{BundleRequest};
+use std::path::{Path, PathBuf};
+use crate::types::BundleRequest;
 use std::fs::{self, File};
 use std::io::Write;
+
+// Helper function to recursively find all files relative to the root directory
+fn collect_relative_files_recursive(root_dir: &Path, dir: &Path, files: &mut Vec<String>) -> Result<(), String> {
+    let entries = fs::read_dir(dir).map_err(|e| format!("Failed to read directory {}: {}", dir.display(), e))?;
+
+    for entry in entries {
+        let entry = entry.map_err(|e| format!("Failed to read entry: {}", e))?;
+        let path = entry.path();
+
+        // Skip hidden directories (like .git, .vscode)
+        if path.is_dir() {
+            if let Some(dir_name) = path.file_name() {
+                if dir_name.to_string_lossy().starts_with('.') {
+                    continue;
+                }
+            }
+            collect_relative_files_recursive(root_dir, &path, files)?; // Recursive call
+        } else if path.is_file() {
+            let relative_path = path
+                .strip_prefix(root_dir)
+                .map_err(|e| format!("Failed to strip prefix for {}: {}", path.display(), e))?
+                .to_string_lossy()
+                .into_owned();
+            files.push(relative_path); // Push relative path
+        }
+    }
+
+    Ok(())
+}
 
 #[tauri::command]
 #[allow(non_snake_case)] // Allow variables to be camelCase
@@ -12,93 +41,82 @@ pub fn _create_theme_dir(path: String) -> Result<String, String> {
     Ok("Directory created successfully".to_string())
 }
 
-
 #[tauri::command]
-#[allow(non_snake_case)]  // Allow variables to be camelCase
-pub fn bundle_theme(request: BundleRequest) -> Result<String,String> {
-    let magic = b"RSKN"; // Define the magic number
-    let manifest_json = serde_json::to_string(&request.manifest) // Convert manifest to string
+#[allow(non_snake_case)] // Allow variables to be camelCase
+pub fn bundle_theme(mut request: BundleRequest) -> Result<String, String> {
+    let magic = b"RSKN"; // Magic number
+
+    let manifest_json = serde_json::to_string(&request.manifest)
         .map_err(|e| format!("Failed to serialize manifest: {}", e))?;
-    let mut file = File::create(&request.output_path) // Create empty .reskin file
-        .map_err(|e| format!("Failed to create file: {}", e))?;
-    file.write_all(magic).map_err(|e| format!("Write error: {}", e))?; // Write magic number
-    let len_bytes = manifest_json.len().to_le_bytes();
-    file.write_all(&len_bytes) // Write manifest length
-        .map_err(|e| format!("Failed to write manifest length: {}", e))?;
-    file.write_all(manifest_json.as_bytes()) // Write manifest as bytes
-        .map_err(|e| format!("Failed to write manifest data: {}", e))?;
 
-    // Write assets
-    for asset_path in &request.assets {
-        let full_path = if let Some(ref base_dir) = request.theme_directory {
-            if Path::new(asset_path).is_absolute() {
-                asset_path.clone()
-            } else {
-                format!("{}/{}", base_dir, asset_path)
-            }
-        } else {
-            asset_path.clone()
-        };
-        
-        let asset_data = std::fs::read(&full_path)
-            .map_err(|e| format!("Failed to read asset {}: {}", full_path, e))?;
-        let filename = std::path::Path::new(&full_path)
-            .file_name()
-            .unwrap()
-            .to_string_lossy()
-            .into_owned();
-        let filename_bytes = filename.as_bytes(); // Filename as bytes
-        let filename_len = (filename_bytes.len() as u32).to_le_bytes();
-        let asset_len = (asset_data.len() as u32).to_le_bytes();
+    let theme_root = request.theme_directory
+        .as_ref()
+        .map(PathBuf::from)
+        .ok_or_else(|| "Theme directory must be provided if assets are listed".to_string())?;
 
-        file.write_all(&filename_len) // Write filename length
-            .map_err(|e| format!("Failed to write filename length: {}", e))?;
-        file.write_all(filename_bytes) // Write filename bytes
-            .map_err(|e| format!("Failed to write filename: {}", e))?;
-        file.write_all(&asset_len) // Write asset length
-            .map_err(|e| format!("Failed to write asset length: {}", e))?;
-        file.write_all(&asset_data) // Write asset data
-            .map_err(|e| format!("Failed to write asset data: {}", e))?;
+    // Auto-collect files if assets list is empty
+    if request.assets.is_empty() {
+        println!("Auto-collecting assets from theme directory...");
+        let mut relative_files = Vec::new();
+        collect_relative_files_recursive(&theme_root, &theme_root, &mut relative_files)?;
+        println!("Found {} files", relative_files.len());
+        request.assets = relative_files;
     }
 
-    Ok("Bundle created successfully".to_string())
+    // Create .reskin output file
+    let mut file = File::create(&request.output_path)
+        .map_err(|e| format!("Failed to create file: {}", e))?;
+
+    // Write header (magic + manifest length + manifest JSON)
+    file.write_all(magic).map_err(|e| format!("Write error: {}", e))?;
+    let len_bytes = (manifest_json.len() as u64).to_le_bytes();
+    file.write_all(&len_bytes).map_err(|e| format!("Failed to write manifest length: {}", e))?;
+    file.write_all(manifest_json.as_bytes()).map_err(|e| format!("Failed to write manifest data: {}", e))?;
+
+    // Write each asset
+    for relative_path_str in &request.assets {
+        let full_path = theme_root.join(relative_path_str);
+        println!("Bundling asset: {}", full_path.display());
+
+        let asset_data = fs::read(&full_path)
+            .map_err(|e| format!("Failed to read asset {}: {}", full_path.display(), e))?;
+
+        let filename_bytes = relative_path_str.as_bytes();
+        let filename_len = (filename_bytes.len() as u32).to_le_bytes();
+        let asset_len = (asset_data.len() as u64).to_le_bytes();
+
+        file.write_all(&filename_len).map_err(|e| format!("Failed to write filename length: {}", e))?;
+        file.write_all(filename_bytes).map_err(|e| format!("Failed to write filename: {}", e))?;
+        file.write_all(&asset_len).map_err(|e| format!("Failed to write asset length: {}", e))?;
+        file.write_all(&asset_data).map_err(|e| format!("Failed to write asset data: {}", e))?;
+    }
+
+    Ok(format!("Bundle created successfully at {}", request.output_path))
 }
 
 #[tauri::command]
 #[allow(non_snake_case)] // Allow variables to be camelCase
-    pub fn bundle_theme_from_directory(request: BundleRequest) -> Result<String, String> {
-        
-        let dir = match &request.theme_directory {
-            Some(d) => d,
-            None => return Err("No base directory provided".to_string()),
-        };
+pub fn bundle_theme_from_directory(mut request: BundleRequest) -> Result<String, String> {
+    let dir = request.theme_directory.clone().ok_or_else(|| "No base directory provided".to_string())?;
+    let dir_path = Path::new(&dir);
 
-        // Verify theme directory exists
-        if !Path::new(dir).exists() {
-            return Err(format!("Theme directory '{}' does not exist", dir));
-        }
-        
-        // Collect all files in the theme directory recursively
-        let mut theme_files = Vec::new();
-        collect_files_recursive(Path::new(dir), &mut theme_files);
-        
-        if theme_files.is_empty() {
-            return Err("No files found in theme directory".to_string());
-        }
-        
-        bundle_theme(request)
+    if !dir_path.exists() || !dir_path.is_dir() {
+        return Err(format!("Theme directory '{}' does not exist or is not a directory", dir));
     }
 
-// Helper function to collect files recursively from a directory
-fn collect_files_recursive(dir: &Path, files: &mut Vec<String>) {
-    if let Ok(entries) = fs::read_dir(dir) {
-        for entry in entries.flatten() {
-            let path = entry.path();
-            if path.is_dir() {
-                collect_files_recursive(&path, files);
-            } else if let Some(path_str) = path.to_str() {
-                files.push(path_str.to_string());
-            }
+    // Collect all files
+    let mut relative_files = Vec::new();
+    collect_relative_files_recursive(dir_path, dir_path, &mut relative_files)?;
+
+    if relative_files.is_empty() {
+        eprintln!("Warning: No files found in theme directory {}", dir); // Return error when theme directory is empty
+    } else {
+        println!("Collected {} asset(s):", relative_files.len());
+        for f in &relative_files {
+            println!(" - {}", f);
         }
     }
+
+    request.assets = relative_files;
+    bundle_theme(request)
 }

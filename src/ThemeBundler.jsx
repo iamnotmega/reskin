@@ -9,23 +9,18 @@ export default function ThemeBundler() {
   const language = localStorage.getItem("reskin_language") || "en";
   const t = getTranslationObject(language);
 
-  // Define status variables
+  // Status variables
   const [isReady, setIsReady] = useState(false);
   const [status, setStatus] = useState(t.bundler.status["status.loading_api"]);
   const [statusType, setStatusType] = useState("info");
 
-  // Set default form data
+  // Form data
   const [formData, setFormData] = useState({
     packageName: "",
     author: "",
     description: t.bundler.manifest.description_default,
+    license: ""
   });
-  const [dragOver, setDragOver] = useState(false);
-
-  // Define selected folder
-  const [selectedFolder, setSelectedFolder] = useState(null);
-
-  // Define theme manifest content
   const [themeData, setThemeData] = useState({
     name: "",
     author: "",
@@ -35,7 +30,10 @@ export default function ThemeBundler() {
     tags: ""
   });
   const [tags, setTags] = useState([]);
-  const storedUser = JSON.parse(localStorage.getItem('reskin_user'));
+  const [dragOver, setDragOver] = useState(false);
+  const [selectedFolder, setSelectedFolder] = useState(null);
+
+  const storedUser = JSON.parse(localStorage.getItem('reskin_user') || "{}");
 
   useEffect(() => {
     const checkTauri = () => {
@@ -57,10 +55,11 @@ export default function ThemeBundler() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setThemeData((prev) => ({ ...prev, [name]: value }));
-    if (name === "name") setFormData((prev) => ({ ...prev, packageName: value }));
-    else if (name === "author") setFormData((prev) => ({ ...prev, author: value }));
-    else if (name === "description") setFormData((prev) => ({ ...prev, description: value }));
+    setThemeData(prev => ({ ...prev, [name]: value }));
+    if (name === "name") setFormData(prev => ({ ...prev, packageName: value }));
+    else if (name === "author") setFormData(prev => ({ ...prev, author: value }));
+    else if (name === "description") setFormData(prev => ({ ...prev, description: value }));
+    else if (name === "license") setFormData(prev => ({ ...prev, license: value }));
   };
 
   const handleTagsChange = (e) => {
@@ -118,10 +117,16 @@ export default function ThemeBundler() {
   };
 
   const handleBundle = async () => {
-    if (!formData.packageName || (!formData.author && !storedUser.username) || !themeData.version) {
+    // Compute final values (handles defaults + disabled author)
+    const finalAuthor = storedUser?.username || formData.author || "User";
+    const finalName = formData.packageName;
+    const finalVersion = themeData.version || "1.0.0";
+
+    if (!finalName || !finalAuthor || !finalVersion) {
       showStatus(t.bundler.status["status.fields_empty"], "error");
       return;
     }
+
     if (!selectedFolder) {
       showStatus(t.bundler.status["status.no_folder"], "error");
       return;
@@ -129,14 +134,15 @@ export default function ThemeBundler() {
 
     try {
       showStatus(t.bundler.status["status.reading_files"], "info");
+
       let fileData = [];
       if (!selectedFolder.path) fileData = selectedFolder.files || [];
 
       const manifest = {
-        name: formData.packageName,
-        author: storedUser?.username || formData.author || "User",
-        description: formData.description,
-        version: themeData.version || "1.0.0",
+        name: finalName,
+        author: finalAuthor,
+        description: formData.description || t.bundler.manifest.description_default,
+        version: finalVersion,
         tags: tags.join(","),
         license: formData.license || "MIT",
       };
@@ -146,7 +152,7 @@ export default function ThemeBundler() {
       catch { homeDir = '/home/' + (window.process?.env?.USER || 'user'); }
 
       const themeDir = `/tmp/reskin`;
-      const outputPath = `${themeDir}/${formData.packageName}.reskin`;
+      const outputPath = `${themeDir}/${finalName}.reskin`;
 
       showStatus(t.bundler.status["status.bundling"], "info");
 
@@ -179,7 +185,7 @@ export default function ThemeBundler() {
 
   return (
     <div id="theme-bundler-root">
-      <h1>📦 {t.bundler.title}</h1>
+      <h1>{t.bundler.title}</h1>
 
       <div className="themebundler-meta-row">
         <div className="themebundler-meta-col">
@@ -193,7 +199,6 @@ export default function ThemeBundler() {
           />
           <input
             name="author"
-
             placeholder={t.bundler.manifest["manifest.author"]} 
             value={storedUser?.username || themeData.author || "User"}
             onChange={handleInputChange}
@@ -262,7 +267,7 @@ export default function ThemeBundler() {
       >
         {selectedFolder ? (
           <div>
-            <p>📁 {t.bundler.dropzone.selected_title.replace("{selectedFolder.name}", selectedFolder.name)}</p>
+            <p>📁 {(t.bundler.dropzone.selected_title || 'Selected Folder: {folderName}').replace("{folderName}", selectedFolder.name)}</p>
             <p className="themebundler-dropzone-desc">{t.bundler.dropzone.selected_desc}</p>
           </div>
         ) : (

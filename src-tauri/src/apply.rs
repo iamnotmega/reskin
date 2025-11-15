@@ -156,5 +156,6 @@ fn apply_window_manager_theme(theme_name: &str) -> Result<String, String> {
         }
     }
     
+    // Return Err if no compatible window manager is found
     Err("No compatible window manager found".to_string())
 }

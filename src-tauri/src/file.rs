@@ -1,6 +1,7 @@
 use std::process::Command;
 #[tauri::command]
 pub fn select_folder() -> Result<String, String> {
+    // Run zenity to open folder selection dialog
     let output = Command::new("zenity")
         .arg("--file-selection")
         .arg("--directory")
@@ -37,6 +38,7 @@ pub fn select_folder() -> Result<String, String> {
 
 #[tauri::command]
 pub fn select_file(title: String) -> Result<String, String> {
+    // Run zenity to open file selection dialog allowing only .reskin files
     let output = Command::new("zenity")
         .arg("--file-selection")
         .arg(&format!("--title={}", title))
@@ -63,13 +65,13 @@ pub fn select_file(title: String) -> Result<String, String> {
 }
 
 #[tauri::command]
-fn _ensure_reskin_folder() -> Result<(), String> {
+fn _ensure_reskin_folder() -> Result<(), String> { // Ensure /tmp/reskin exists
 	use std::fs;
 	use std::env::temp_dir;
-	let mut path = temp_dir();
-	path.push("reskin");
-	fs::create_dir_all(&path).map_err(|e| e.to_string())?;
-	Ok(())
+	let mut path = temp_dir(); // Define path as /tmp
+	path.push("reskin"); // Append reskin to the end of /tmp, resulting in /tmp/reskin
+	fs::create_dir_all(&path).map_err(|e| e.to_string())?; // Create /tmp/reskin with all neccessary parent directories
+	Ok(()) // Return success
 }
 
 #[tauri::command]
