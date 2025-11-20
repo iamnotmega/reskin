@@ -1,3 +1,4 @@
+// Import necessary crates
 use std::fs;
 
 // Check if theme has GTK or window manager components
@@ -31,7 +32,7 @@ pub fn has_fonts(theme_path: &std::path::Path) -> bool {
         for entry in entries.flatten() {
             if let Some(ext) = entry.path().extension() {
                 if ["ttf", "otf", "woff", "woff2", "eot"].contains(&ext.to_str().unwrap_or("")) {
-                    return true;
+                    return true; // Return true if theme directory contains a font file
                 }
             }
         }

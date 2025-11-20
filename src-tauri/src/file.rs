@@ -1,4 +1,8 @@
+// import necessary crates
 use std::process::Command;
+use std::fs;
+use std::env::temp_dir;
+
 #[tauri::command]
 pub fn select_folder() -> Result<String, String> {
     // Run zenity to open folder selection dialog
@@ -15,10 +19,10 @@ pub fn select_folder() -> Result<String, String> {
                 if !path.is_empty() {
                     Ok(path)
                 } else {
-                    Err("No folder selected".to_string())
+                    Err("No folder selected".to_string()) // Throw error if no folder is selected
                 }
             } else {
-                Err("Failed to open folder dialog".to_string())
+                Err("Failed to open folder dialog".to_string()) // Throw error if opening the folder dialog fails
             }
         }
         Err(_) => {
@@ -66,8 +70,6 @@ pub fn select_file(title: String) -> Result<String, String> {
 
 #[tauri::command]
 fn _ensure_reskin_folder() -> Result<(), String> { // Ensure /tmp/reskin exists
-	use std::fs;
-	use std::env::temp_dir;
 	let mut path = temp_dir(); // Define path as /tmp
 	path.push("reskin"); // Append reskin to the end of /tmp, resulting in /tmp/reskin
 	fs::create_dir_all(&path).map_err(|e| e.to_string())?; // Create /tmp/reskin with all neccessary parent directories
@@ -76,8 +78,6 @@ fn _ensure_reskin_folder() -> Result<(), String> { // Ensure /tmp/reskin exists
 
 #[tauri::command]
 fn _theme_file_exists(theme_name: String) -> bool {
-	use std::fs;
-	use std::env::temp_dir;
 	let mut path = temp_dir();
 	path.push("reskin");
 	path.push(format!("{}.reskin", theme_name));

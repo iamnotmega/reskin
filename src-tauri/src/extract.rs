@@ -1,6 +1,7 @@
 use std::fs;
 use std::fs::File;
 use std::io::Read;
+use std::path::Path;
 use crate::types::ThemeManifest;
 
 #[tauri::command]
@@ -23,7 +24,7 @@ pub fn extract_theme_info(file_data: Vec<u8>) -> Result<ThemeManifest, String> {
     ]);
 
     if file_data.len() < 12 + manifest_size {
-        return Err("Invalid .reskin file: manifest size mismatch".to_string());
+        return Err("Invalid .reskin file: manifest size mismatch".to_string()); // Return error if manifest size is incorrect
     }
 
     // Extract manifest JSON
@@ -31,8 +32,8 @@ pub fn extract_theme_info(file_data: Vec<u8>) -> Result<ThemeManifest, String> {
     let manifest_str = String::from_utf8_lossy(manifest_bytes);
     
     match serde_json::from_str::<ThemeManifest>(&manifest_str) {
-        Ok(manifest) => Ok(manifest),
-        Err(e) => Err(format!("Failed to parse manifest: {}", e))
+        Ok(manifest) => Ok(manifest), // Return success
+        Err(e) => Err(format!("Failed to parse manifest: {}", e)) // Throw error
     }
 }
 
@@ -46,8 +47,6 @@ pub fn extract_theme_info_from_file(file_path: String) -> Result<ThemeManifest, 
 
 #[tauri::command]
 pub fn extract_theme(bundle_path: String) -> Result<String, String> {
-    use std::path::Path;
-
     let mut file = File::open(&bundle_path) // Attempt to open file
         .map_err(|e| format!("Failed to open bundle: {}", e))?; // Throw error
 
@@ -59,25 +58,25 @@ pub fn extract_theme(bundle_path: String) -> Result<String, String> {
     }
 
     let mut len_bytes = [0u8; 8]; // File length as bytes
-    file.read_exact(&mut len_bytes)
-        .map_err(|e| format!("Failed to reach manifest length: {}", e))?;
+    file.read_exact(&mut len_bytes) // Read length as bytes from the file
+        .map_err(|e| format!("Failed to reach manifest length: {}", e))?; // Throw error on failure
     let manifest_len = usize::from_le_bytes(len_bytes);
 
     let mut manifest_json = vec![0u8; manifest_len];
-    file.read_exact(&mut manifest_json)
-        .map_err(|e| format!("Failed to read manifest data: {}", e))?;
+    file.read_exact(&mut manifest_json) // Read manifest data from file
+        .map_err(|e| format!("Failed to read manifest data: {}", e))?; // Throw error on failure
 
-    let manifest: ThemeManifest = serde_json::from_slice(&manifest_json)
-        .map_err(|e| format!("Failed to parse manifest: {}", e))?;
+    let manifest: ThemeManifest = serde_json::from_slice(&manifest_json) // Parse manifest with serde_json as ThemeManifest struct
+        .map_err(|e| format!("Failed to parse manifest: {}", e))?; // Throw error on failure
     
     let home_dir = std::env::var("HOME").unwrap_or("/home/user".into()); // Unwrap ~ into /home
     let output_dir = format!("/{}/.themes/{}", home_dir, manifest.name); // Extraction output directory
 
     fs::create_dir_all(&output_dir) // Create output directory and all necessary parent directories
-        .map_err(|e| format!("Failed to create output dir: {}", e))?;
+        .map_err(|e| format!("Failed to create output dir: {}", e))?; // Throw error on failure
     
     fs::write(Path::new(&output_dir).join("reskin.json"), &manifest_json) // Write reskin.json file into output directory
-        .map_err(|e| format!("Failed to write reskin.json: {}", e))?;
+        .map_err(|e| format!("Failed to write reskin.json: {}", e))?; // Throw error on failure
 
     // Extract assets from the bundle file
     loop {

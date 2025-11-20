@@ -1,4 +1,4 @@
-// Import necessary components
+// Import necessary crates
 use std::process::Command;
 
 #[tauri::command]

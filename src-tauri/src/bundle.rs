@@ -1,4 +1,4 @@
-// Import necessary components
+// Import necessary crates
 use std::path::{Path, PathBuf};
 use crate::types::BundleRequest;
 use std::fs::{self, File};
@@ -85,13 +85,13 @@ pub fn bundle_theme(mut request: BundleRequest) -> Result<String, String> {
         let filename_len = (filename_bytes.len() as u32).to_le_bytes();
         let asset_len = (asset_data.len() as u64).to_le_bytes();
 
-        file.write_all(&filename_len).map_err(|e| format!("Failed to write filename length: {}", e))?;
-        file.write_all(filename_bytes).map_err(|e| format!("Failed to write filename: {}", e))?;
-        file.write_all(&asset_len).map_err(|e| format!("Failed to write asset length: {}", e))?;
-        file.write_all(&asset_data).map_err(|e| format!("Failed to write asset data: {}", e))?;
+        file.write_all(&filename_len).map_err(|e| format!("Failed to write filename length: {}", e))?; // Write filename length
+        file.write_all(filename_bytes).map_err(|e| format!("Failed to write filename: {}", e))?; // Write filename bytes
+        file.write_all(&asset_len).map_err(|e| format!("Failed to write asset length: {}", e))?; // Write asset length
+        file.write_all(&asset_data).map_err(|e| format!("Failed to write asset data: {}", e))?; // Write asset data
     }
 
-    Ok(format!("Bundle created successfully at {}", request.output_path))
+    Ok(format!("Bundle created successfully at {}", request.output_path)) // Return success
 }
 
 #[tauri::command]
@@ -101,7 +101,7 @@ pub fn bundle_theme_from_directory(mut request: BundleRequest) -> Result<String,
     let dir_path = Path::new(&dir);
 
     if !dir_path.exists() || !dir_path.is_dir() {
-        return Err(format!("Theme directory '{}' does not exist or is not a directory", dir));
+        return Err(format!("Theme directory '{}' does not exist or is not a directory", dir)); // Return error if directory doesn't exist or isn't a directory
     }
 
     // Collect all files
@@ -118,5 +118,5 @@ pub fn bundle_theme_from_directory(mut request: BundleRequest) -> Result<String,
     }
 
     request.assets = relative_files;
-    bundle_theme(request)
+    bundle_theme(request) // Bundle theme with the request data
 }
