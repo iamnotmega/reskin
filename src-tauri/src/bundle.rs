@@ -46,7 +46,7 @@ pub fn _create_theme_dir(path: String) -> Result<String, String> {
 pub fn bundle_theme(mut request: BundleRequest) -> Result<String, String> {
     let magic = b"RSKN"; // Magic number
 
-    let manifest_json = serde_json::to_string(&request.manifest)
+    let manifest_json = serde_json::to_vec(&request.manifest)
         .map_err(|e| format!("Failed to serialize manifest: {}", e))?;
 
     let theme_root = request.theme_directory
@@ -71,7 +71,7 @@ pub fn bundle_theme(mut request: BundleRequest) -> Result<String, String> {
     file.write_all(magic).map_err(|e| format!("Write error: {}", e))?;
     let len_bytes = (manifest_json.len() as u64).to_le_bytes();
     file.write_all(&len_bytes).map_err(|e| format!("Failed to write manifest length: {}", e))?;
-    file.write_all(manifest_json.as_bytes()).map_err(|e| format!("Failed to write manifest data: {}", e))?;
+    file.write_all(&manifest_json).map_err(|e| format!("Failed to write manifest data: {}", e))?;
 
     // Write each asset
     for relative_path_str in &request.assets {
