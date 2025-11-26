@@ -26,5 +26,5 @@ fn main() {
 			Ok(())
 		})
 		.run(tauri::generate_context!()) // Run application
-		.expect("error while running tauri application");
+		.expect("error while running tauri application"); // Throw error on failure
 }

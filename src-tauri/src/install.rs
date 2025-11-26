@@ -1,52 +1,63 @@
 use std::fs;
+use std::path::Path;
 use crate::check::{has_gtk_or_wm_components, has_icons, has_cursors, has_fonts};
-use crate::extract::{extract_theme, extract_theme_info};
+use crate::extract::extract_theme;
+use crate::types::ThemeManifest;
 use crate::utils::{install_icons, install_cursors, install_fonts, copy_dir_recursive};
 use crate::apply::apply_theme;
 
 #[tauri::command]
 #[allow(non_snake_case)]
 pub fn install_theme_from_data(file_data: Vec<u8>, file_name: String, autoApply: bool) -> Result<String, String> {
-    // Create temp directory
-    let temp_dir = format!("/tmp/reskin_install_{}", 
-        std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap()
-            .as_secs()
-    );
-    
-    // Save file to temp location
+    let timestamp = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap()
+        .as_secs();
+
+    let temp_dir = format!("/tmp/reskin_install_{}", timestamp);
     let temp_file_path = format!("{}/{}", temp_dir, file_name);
-    
+
     if let Err(e) = fs::create_dir_all(&temp_dir) {
         return Err(format!("Failed to create temp directory: {}", e));
     }
-    
-    if let Err(e) = fs::write(&temp_file_path, file_data) {
+
+    if let Err(e) = fs::write(&temp_file_path, &file_data) {
         return Err(format!("Failed to write temp file: {}", e));
     }
-    
-    // First extract the theme to get the theme name
-    extract_theme(temp_file_path.clone())?;
-    
-    // Get theme info to find the theme name
-    let theme_info = extract_theme_info(fs::read(&temp_file_path)
-        .map_err(|e| format!("Failed to read temp file: {}", e))?)?;
-    
-    // Now install using the theme name
-    let result = install_theme(theme_info.name.clone(), autoApply)?;
-    
-    // Clean up temp file
+
+    let extracted_path = match extract_theme(temp_file_path.clone()) {
+        Ok(path) => path,
+        Err(e) => {
+            return Err(format!("Failed to extract theme: {}", e));
+        }
+    };
+
+    let manifest_path = format!("{}/reskin.json", extracted_path);
+    let manifest_bytes = match fs::read(&manifest_path) {
+        Ok(bytes) => bytes,
+        Err(e) => {
+            return Err(format!("Failed to read manifest: {}", e));
+        }
+    };
+
+    if let Err(e) = serde_json::from_slice::<ThemeManifest>(&manifest_bytes) {
+        return Err(format!("Failed to parse manifest: {}", e));
+    }
+
+    let result = match install_theme(extracted_path.clone(), autoApply) {
+        Ok(r) => r,
+        Err(e) => {
+            return Err(e);
+        }
+    };
+
     let _ = fs::remove_dir_all(&temp_dir);
-    
     Ok(result)
 }
 
 #[tauri::command]
 #[allow(non_snake_case)]
 pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, String> {
-    use std::path::Path;
-
     if !Path::new(&theme_path).exists() {
         return Err(format!("Theme not found at '{}'", theme_path));
     }
@@ -57,23 +68,23 @@ pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, Stri
         .to_string_lossy()
         .to_string();
 
-    let home_dir = std::env::var("HOME").map_err(|_| "Failed to get HOME directory".to_string())?;
-    
+    let home_dir = std::env::var("HOME").unwrap_or("/home/user".into());
+
     let mut installed_components = Vec::new();
     let staging_path = Path::new(&theme_path);
 
-    // Use staging_path for all component checks and installs
     if has_gtk_or_wm_components(&staging_path) {
         let themes_dir = format!("{}/.themes", home_dir);
         let dest_dir = format!("{}/{}", themes_dir, theme_name);
-        fs::create_dir_all(&themes_dir)
-            .map_err(|e| format!("Failed to create ~/.themes directory: {}", e))?;
+
+        let _ = fs::create_dir_all(&themes_dir);
         if Path::new(&dest_dir).exists() {
-            fs::remove_dir_all(&dest_dir)
-                .map_err(|e| format!("Failed to remove existing theme: {}", e))?;
+            let _ = fs::remove_dir_all(&dest_dir);
         }
+
         copy_dir_recursive(&theme_path, &dest_dir)
-            .map_err(|e| format!("Failed to install theme: {}", e))?;
+            .map_err(|e| format!("Failed to copy theme: {}", e))?;
+
         installed_components.push("GTK/Window Manager theme");
     }
 
@@ -93,22 +104,22 @@ pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, Stri
     }
 
     let components_str = if installed_components.is_empty() {
-        "No compatible components found".to_string()
+        "No compatible components found".into()
     } else {
         installed_components.join(", ")
     };
 
     let mut result_message = format!(
-    "Theme '{}' installed successfully!\nComponents: {}",
-    theme_name, components_str
+        "Theme '{}' installed successfully!\nComponents: {}",
+        theme_name, components_str
     );
 
     if autoApply {
         match apply_theme(theme_name.clone()) {
-            Ok(apply_msg) => {
+            Ok(msg) => {
                 result_message.push_str("\n\n");
-                result_message.push_str(&apply_msg);
-            },
+                result_message.push_str(&msg);
+            }
             Err(e) => {
                 result_message.push_str("\n\n⚠️ Failed to auto-apply: ");
                 result_message.push_str(&e);
@@ -117,5 +128,4 @@ pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, Stri
     }
 
     Ok(result_message)
-
 }

@@ -1,3 +1,4 @@
+// Import necessary crates
 use serde_json::json;
 use std::process::Command;
 
@@ -18,11 +19,11 @@ pub fn init() -> Result<serde_json::Value, String> {
         .arg("mkdir -p /tmp/reskin")
         .output()
         .map_err(|e| format!("Failed to create temporary directory: {}", e))?;
-    let de = String::from_utf8_lossy(&de_output.stdout).trim().to_string();
+    let de = String::from_utf8_lossy(&de_output.stdout).trim().to_string(); // The user's desktop environment trimmed and converted to a string
 
     let system_info = json!({
         "de": de,
     });
 
-    Ok(system_info)
+    Ok(system_info) // Return success with system info
 }
