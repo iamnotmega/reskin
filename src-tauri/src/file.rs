@@ -56,14 +56,14 @@ pub fn select_file(title: String) -> Result<String, String> {
                 if !path.is_empty() {
                     Ok(path)
                 } else {
-                    Err("No file selected".to_string())
+                    Err("No file selected".to_string()) // Throw error when no file is selected
                 }
             } else {
-                Err("Failed to open file dialog".to_string())
+                Err("Failed to open file dialog".to_string()) // Throw error when opening the file dialog failed
             }
         }
         Err(_) => {
-            Err("No file dialog available. Please use drag and drop.".to_string())
+            Err("No file dialog available. Please use drag and drop.".to_string()) // Fallback to drag and drop if opening file dialog fails
         }
     }
 }
