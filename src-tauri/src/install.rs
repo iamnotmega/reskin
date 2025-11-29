@@ -117,7 +117,7 @@ pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, Stri
 
     let manifest_path = format!("{}/reskin.json", theme_path);
 
-    let (name, author, description) = if let Ok(bytes) = fs::read(&manifest_path) {
+    let (_name, author, description) = if let Ok(bytes) = fs::read(&manifest_path) {
         if let Ok(manifest) = serde_json::from_slice::<ThemeManifest>(&bytes) {
             (manifest.name.clone(), manifest.author.clone(), manifest.description.clone())
         } else {
