@@ -14,15 +14,15 @@ import Marketplace from "./Marketplace";
 import ConfigurationFiles from "./ConfigurationFiles";
 
 export default function App(props) {
-  const [currentView, setCurrentView] = useState('home');
-  const [installedThemes, setInstalledThemes] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState(null);
-  const [user, setUser] = useState(null);
+  const [currentView, setCurrentView] = useState('home'); // Current view of the app
+  const [installedThemes, setInstalledThemes] = useState([]); // Installed themes
+  const [selectedTheme, setSelectedTheme] = useState(null); // Selected theme
+  const [user, setUser] = useState(null); // Currently logged in user
 
 
   // Get recently installed themes from localStorage
   useEffect(() => {
-	invoke("ensure_reskin_folder").catch(() => {});
+	invoke("ensure_reskin_folder").catch(() => {}); // Ensure /tmp/reskin exists
 	(async () => {
 	  try {
 		const recent = await invoke("get_recent_themes");

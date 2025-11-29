@@ -18,7 +18,9 @@ const configMap = {
   hyprland: "~/.config/hypr/hyprland.conf",
   nvim: "~/.config/nvim/init.lua",
   vimrc: "~/.vimrc",
-  fish: "~/.config/fish/config.fish"
+  fish: "~/.config/fish/config.fish",
+  neofetch: "~/.config/neofetch/config.conf",
+  fastfetch: "~/.config/fastfetch/config.jsonc"
 };
 
 export default function ConfigInstaller() {

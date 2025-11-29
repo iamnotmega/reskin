@@ -77,11 +77,11 @@ pub fn extract_theme(bundle_path: String) -> Result<String, String> {
         .map_err(|e| format!("Failed to read manifest data: {}", e))?; // Throw error on failure
 
     // Parse manifest
-    let _manifest: ThemeManifest = serde_json::from_slice(&manifest_json)
+    let manifest: ThemeManifest = serde_json::from_slice(&manifest_json)
         .map_err(|e| format!("Failed to parse manifest: {}", e))?;
 
     // Prepare output directory
-    let output_dir = temp_dir.clone(); // Extraction output directory
+    let output_dir = format!("/tmp/{}", manifest.name); // Extraction output directory
     fs::create_dir_all(&output_dir)
         .map_err(|e| format!("Failed to create output dir: {}", e))?;
 

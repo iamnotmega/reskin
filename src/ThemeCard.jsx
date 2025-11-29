@@ -35,18 +35,18 @@ export default function ThemeCard({ theme, onClick }) {
     >
       <img
         src={theme.preview}
-        alt={theme.name || t.themeCard.preview_alt}
+        alt={theme.name || t.themecard.preview_alt}
         onError={e => { e.target.onerror = null; e.target.src = "/default-preview.png"; }}
         style={{ opacity: missing ? 0.5 : 1 }}
       />
-      <div className="theme-card-title">{theme.name || t.themeCard.untitled}</div>
+      <div className="theme-card-title">{theme.name || t.themecard.untitled}</div>
       <div className="theme-card-author">
-        {t.themeCard.by} {theme.author || t.themeCard.unknown}
+        {t.themecard.by} {theme.author || t.themecard.unknown}
       </div>
       {missing && (
         <div style={{ color: "#ff5555", fontWeight: "bold", marginTop: 8 }}>
-          {t.themeCard.missing_title}<br />
-          {t.themeCard.missing_desc}
+          {t.themecard.missing_title}<br />
+          {t.themecard.missing_desc}
         </div>
       )}
     </div>
