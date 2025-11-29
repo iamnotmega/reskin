@@ -5,6 +5,7 @@ use crate::extract::extract_theme;
 use crate::types::ThemeManifest;
 use crate::utils::{install_icons, install_cursors, install_fonts, copy_dir_recursive};
 use crate::apply::apply_theme;
+use crate::recent::add_recent_theme;
 
 #[tauri::command]
 #[allow(non_snake_case)]
@@ -113,6 +114,21 @@ pub fn install_theme(theme_path: String, autoApply: bool) -> Result<String, Stri
         "Theme '{}' installed successfully!\nComponents: {}",
         theme_name, components_str
     );
+
+    let manifest_path = format!("{}/reskin.json", theme_path);
+
+    let (name, author, description) = if let Ok(bytes) = fs::read(&manifest_path) {
+        if let Ok(manifest) = serde_json::from_slice::<ThemeManifest>(&bytes) {
+            (manifest.name.clone(), manifest.author.clone(), manifest.description.clone())
+        } else {
+            ("Unknown".into(), "Unknown".into(), "".into())
+        }
+    
+    } else {
+        ("Unknown".into(), "Unknown".into(), "".into())
+    };
+
+    let _ = add_recent_theme(theme_name.clone(), author, description);
 
     if autoApply {
         match apply_theme(theme_name.clone()) {
