@@ -1,5 +1,5 @@
 <div align="center">
-    <img width=80px src="public/assets/logo.svg">
+    <img alt="Reskin logo" width=80px src="public/assets/logo.svg">
 </div>
 
 <br>
@@ -8,7 +8,7 @@ Reskin is a modern Linux desktop theming app for browsing, applying, and managin
 
 ![AUR Version](https://img.shields.io/aur/version/reskin?style=flat) ![GitHub License](https://img.shields.io/github/license/iamnotmega/reskin?style=flat) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/iamnotmega/reskin/nightly.yml?style=flat)
 
-<img src="https://reskinapp.github.io/_astro/marketplace.Bj8uKcZh.png">
+<img alt="Reskin demo slideshow" src="public/assets/readme/demo.gif">
 
 Learn more at: https://reskinapp.github.io
 
