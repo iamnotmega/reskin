@@ -1,9 +1,3 @@
-<div align="center">
-    <img width=80px src="public/assets/logo.svg">
-</div>
-
-<br>
-
 Reskin is a modern Linux desktop theming app for browsing, applying, and managing custom themes. It supports portable `.reskin` theme packages and provides a simple GUI for theme management across different desktop environments.
 
 ![AUR Version](https://img.shields.io/aur/version/reskin?style=flat) ![GitHub License](https://img.shields.io/github/license/iamnotmega/reskin?style=flat) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/iamnotmega/reskin/nightly.yml?style=flat)
