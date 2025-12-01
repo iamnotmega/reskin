@@ -14,8 +14,6 @@ Learn more at: https://reskinapp.github.io
 
 ## Installation
 
-> **⚠️** Please note that Reskin currently does not support NixOS.
-
 Reskin can be installed in 3 different ways:
 
 ### Prebuilt binary
