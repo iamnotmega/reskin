@@ -1,3 +1,4 @@
+// Import necessary components
 import React, { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import ThemeRow from "./ThemeRow";
@@ -7,26 +8,26 @@ const downloadTheme = async (args) => await invoke('download_theme', args);
 const fetchMarketplaceThemes = async (args) => await invoke('fetch_marketplace_themes', args);
 
 export default function Marketplace({ onThemeClick, onNavigate }) {
-  const language = localStorage.getItem("reskin_language") || "en";
-  const t = getTranslationObject(language);
+  const language = localStorage.getItem("reskin_language") || "en"; // Get selected language or fallback to English
+  const t = getTranslationObject(language); // Translation object
 
-  const [themes, setThemes] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [themes, setThemes] = useState(null); // Available themes
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const loadThemes = async () => {
       try {
-        const args = {
+        const args = { // Appwrite credientials
           projectId: "reskin",
           endpoint: import.meta.env.VITE_APPWRITE_ENDPOINT || "",
           databaseId: "reskin",
           collectionId: "themes",
           apiKey: import.meta.env.VITE_APPWRITE_apiKey || ""
         };
-        const data = await fetchMarketplaceThemes(args);
-        setThemes(data.documents);
+        const data = await fetchMarketplaceThemes(args); // Fetch marketplace themes with Appwrite credientials
+        setThemes(data.documents); // Set themes as the available themes from the themes document
       } catch (error) {
-        console.error(`${t.marketplace.status["loading"]} ${error}`);
+        console.error(`${t.marketplace.status["loading"]} ${error}`); // Throw error on failure
       } finally {
         setLoading(false);
       }
@@ -35,6 +36,7 @@ export default function Marketplace({ onThemeClick, onNavigate }) {
     loadThemes();
   }, [t]);
 
+  // Return HTML content
   return (
     <div className="marketplace">
       <button

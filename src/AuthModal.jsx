@@ -21,22 +21,22 @@ try {
 }
 
 export default function AuthModal({ open, onClose, onAuth }) {
-  const language = localStorage.getItem("reskin_language") || "en";
-  const t = getTranslationObject(language);
-  const [mode, setMode] = useState("login");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showRecovery, setShowRecovery] = useState(false);
-  const [recoveryEmail, setRecoveryEmail] = useState("");
-  const [recoveryMsg, setRecoveryMsg] = useState("");
+  const language = localStorage.getItem("reskin_language") || "en"; // Get selected language or fallback to English
+  const t = getTranslationObject(language); // Translation object
+  const [mode, setMode] = useState("login"); // The auth modal mode ("login" by defaults)
+  const [username, setUsername] = useState(""); // Entered username
+  const [email, setEmail] = useState(""); // Entered email
+  const [password, setPassword] = useState(""); // Entered password
+  const [error, setError] = useState(""); // Error message
+  const [loading, setLoading] = useState(false); // Loading state
+  const [showRecovery, setShowRecovery] = useState(false); // Recovery screen state
+  const [recoveryEmail, setRecoveryEmail] = useState(""); // Entered recovery email
+  const [recoveryMsg, setRecoveryMsg] = useState(""); // Recovery message
 
   React.useEffect(() => {
     (async () => {
       try {
-        const user = await account.get();
+        const user = await account.get(); // Get currently logged in user
         if (user) {
           onAuth && onAuth(user);
         }
@@ -44,16 +44,16 @@ export default function AuthModal({ open, onClose, onAuth }) {
     })();
   }, []);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e) => { // Handle login
     e.preventDefault();
     setLoading(true);
     setError("");
     try {
       if (!email.includes('@')) {
-        throw new Error(t.authmodal.status["status.email_required"]);
+        throw new Error(t.authmodal.status["status.email_required"]); // If email is invalid (does not contain @ symbol), throw an error
       }
-      await account.createEmailPasswordSession(email, password);
-      const fullUser = await account.get();
+      await account.createEmailPasswordSession(email, password); // Create a session using the Appwrite SDK
+      const fullUser = await account.get(); 
       const userData = {
         id: fullUser.$id,
         email: fullUser.email,
@@ -61,23 +61,23 @@ export default function AuthModal({ open, onClose, onAuth }) {
         prefs: fullUser.prefs || {},
       };
       onAuth(userData);
-      localStorage.setItem('reskin_user', JSON.stringify(userData));
+      localStorage.setItem('reskin_user', JSON.stringify(userData)); // Store currently logged in user in localStorage
       onClose();
     } catch (err) {
       console.error(err);
       console.error(err.stack)
-      setError(err.message || t.authmodal.status["status.login_failed"]);
+      setError(err.message || t.authmodal.status["status.login_failed"]); // Throw error on failure
     }
     setLoading(false);
   };
 
-  const handleSignup = async (e) => {
+  const handleSignup = async (e) => { // Handle signup
     e.preventDefault();
     setLoading(true);
     setError("");
     try {
-      await account.create(ID.unique(), email, password, username);
-      await account.createEmailPasswordSession(email, password);
+      await account.create(ID.unique(), email, password, username); // Create a new user account with entered information
+      await account.createEmailPasswordSession(email, password); // Create session with the newly created user
       const fullUser = await account.get();
       const userData = {
         id: fullUser.$id,
@@ -86,29 +86,30 @@ export default function AuthModal({ open, onClose, onAuth }) {
         prefs: fullUser.prefs || {},
       };
       onAuth(userData);
-      localStorage.setItem('reskin_user', JSON.stringify(userData));
+      localStorage.setItem('reskin_user', JSON.stringify(userData)); // Store currently logged in user in localStorage
       onClose();
     } catch (err) {
-      setError(err.message || t.authmodal.status["status.signup_failed"]);
+      setError(err.message || t.authmodal.status["status.signup_failed"]); // Throw error on failure
     }
     setLoading(false);
   };
 
-  const handleRecovery = async (e) => {
+  const handleRecovery = async (e) => { // Handle recovery
     e.preventDefault();
     setRecoveryMsg("");
     setLoading(true);
     try {
-      await account.createRecovery(recoveryEmail, window.location.origin + "/set-new-password");
-      setRecoveryMsg(t.setnewpassword.status["status.recovery_sent"]);
+      await account.createRecovery(recoveryEmail, window.location.origin + "/set-new-password"); // Create recovery email using Appwrite SDK
+      setRecoveryMsg(t.setnewpassword.status["status.recovery_sent"]); // Return success
     } catch (err) {
-      setRecoveryMsg(err.message || t.setnewpassword.status["status.recovery_send_failure"]);
+      setRecoveryMsg(err.message || t.setnewpassword.status["status.recovery_send_failure"]); // Throw error
     }
     setLoading(false);
   };
 
   if (!open) return null;
 
+  // Return HTML content
   return (
     <div className="auth-modal-overlay" style={{
       position: "fixed",

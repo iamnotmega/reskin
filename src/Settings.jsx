@@ -6,37 +6,37 @@ import { getTranslationObject, getLanguageOptions } from "./locales/index.js";
 
 export default function Settings() {
     const [installLocation, setInstallLocation] = useState(
-        localStorage.getItem("reskin_install_location") || "~/.themes"
+        localStorage.getItem("reskin_install_location") || "~/.themes" // Install location for themes
     );
     const [autoApply, setAutoApply] = useState(
-        localStorage.getItem("reskin_auto_apply") === "true"
+        localStorage.getItem("reskin_auto_apply") === "true" // Automatically apply themes after installation
     );
     const [backupConfig, setBackupConfig] = useState(
-        localStorage.getItem("reskin_backup_config") === "true"
+        localStorage.getItem("reskin_backup_config") === "true" // Back up current configuration file before applying a new one
     );
     const [language, setLanguage] = useState(
-        localStorage.getItem("reskin_language") || "en"
+        localStorage.getItem("reskin_language") || "en" // Application language
     );
-    const [appVersion, setAppVersion] = useState("Unknown");
+    const [appVersion, setAppVersion] = useState("Unknown"); // Application version
     const [fade, setFade] = useState(false);
 
-    const t = getTranslationObject(language);
-    const languageOptions = getLanguageOptions();
+    const t = getTranslationObject(language); // Translation object
+    const languageOptions = getLanguageOptions(); // Get available language options
 
     useEffect(() => {
         const getVersion = async () => {
             try {
-                const ver = await invoke("get_app_version");
-                setAppVersion(ver || "Unknown");
+                const ver = await invoke("get_app_version"); // Get app version
+                setAppVersion(ver || "Unknown"); // Set app version to obtained version or fallback to Unknown
             } catch (err) {
-                console.error("Failed to get app version:", err);
+                console.error("Failed to get app version:", err); // Throw error on failure
                 setAppVersion(`Unknown (${err?.toString() || "error"})`);
             }
         };
         getVersion();
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { // Set localStorage entries for the settings to match the frontend
         localStorage.setItem("reskin_install_location", installLocation);
     }, [installLocation]);
 
@@ -52,6 +52,7 @@ export default function Settings() {
         localStorage.setItem("reskin_language", language);
     }, [language]);
 
+    // Return HTML content
     return (
         <div className={`settings-container${fade ? " settings-fade" : ""}`}>
             <h2>{t.settings["title"]}</h2>
