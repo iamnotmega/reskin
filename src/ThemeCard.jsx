@@ -5,9 +5,8 @@ import { getTranslationObject } from "./locales/index.js";
 import "@tauri-apps/api/core";
 
 export default function ThemeCard({ theme, onClick }) {
-  // Use stored language or fallback to English
-  const language = localStorage.getItem("reskin_language") || "en";
-  const t = getTranslationObject(language);
+  const language = localStorage.getItem("reskin_language") || "en"; // Use selected language or fall back to English
+  const t = getTranslationObject(language); // Translation object
 
   const [missing, setMissing] = useState(false);
 
@@ -27,6 +26,7 @@ export default function ThemeCard({ theme, onClick }) {
     }
   }, [theme.name]);
 
+  // Return HTML content
   return (
     <div
       className="theme-card"

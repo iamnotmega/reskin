@@ -5,6 +5,7 @@ import logo from "/assets/logo.svg";
 import "./Titlebar.css";
 
 export default function Titlebar() {
+  // Return HTML content
   return (
     <div data-tauri-drag-region className="titlebar">
       <div className="flex items-center">

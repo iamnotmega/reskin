@@ -16,13 +16,15 @@ export default function UploadTheme({ onNavigate }) {
   const client = new Client()
     .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
     .setProject("reskin");
+  
+  // Create necessary Appwrite objects
   const storage = new Storage(client);
   const databases = new Databases(client);
   const account = new Account(client);
 
-  const bucketId = "themes";
-  const databaseId = "reskin";
-  const collectionId = "themes";
+  const bucketId = "themes"; // Storage bucket ID
+  const databaseId = "reskin"; // Database ID
+  const collectionId = "themes"; // Collection ID
 
   // Function to change status message
   const showStatus = (msg) => setStatus(msg);
@@ -139,6 +141,7 @@ export default function UploadTheme({ onNavigate }) {
     }
   };
 
+  // Return HTML content
   return (
     <div>
       <h1>📤 Upload Theme</h1>
