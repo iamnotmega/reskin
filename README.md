@@ -2,12 +2,11 @@
     <img alt="Reskin logo" width=80px src="public/assets/logo.svg">
     <div align="center">
 
-  [Website] | [Quick Start] | [Discord Server]
+  [Website] | [Quick Start]
 </div>
 
 [Website]: https://reskinapp.github.io/
 [Quick Start]: https://reskinapp.github.io/guides/quick-start/about/
-[Discord Server]: https://dsc.gg/reskin
 
 </div>
 
