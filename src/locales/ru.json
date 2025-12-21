@@ -95,14 +95,14 @@
       "label.auto_apply": "Применить тему автоматически после загрузки",
       "label.backup_config": "Создать резервную копию файла конфигурации",
       "label.language": "Язык",
-      "label.app_version": "Версия Приложения:"
+      "label.app_version": "Версия Приложения:",
       "label.theme": "Тема"
     },
     "tooltip": {
       "tooltip.install_location": "Устанавливает путь загрузки тем.",
       "tooltip.auto_apply": "Применяет тему автоматически после загрузки.",
       "tooltip.backup_config": "Делает резевную копию текущего файла конфигурации до применения нового.",
-      "tooltip.language": "Язык приложения."
+      "tooltip.language": "Язык приложения.",
       "tooltip.theme": "Тема приложения."
     },
     "option": {
