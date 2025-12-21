@@ -102,11 +102,12 @@
       "tooltip.install_location": "Stel de locatie in waar thema's worden geïnstalleerd.",
       "tooltip.auto_apply": "Pas het thema automatisch toe na installatie.",
       "tooltip.backup_config": "Maak een back-up van het huidige configuratiebestand voordat je een nieuw toepast.",
-      "tooltip.language": "De taal van de applicatie."
+      "tooltip.language": "de taal van de applicatie.",
+      "tooltip.theme": "de thema van de applicatie."
     },
-    "option": {
-      "option.language_en": "Engels",
-      "option_language_ee": "Ests"
+    "option": {"option": {
+      "option.theme_light": "Light",
+      "option.theme_dark": "Dark"
     }
   },
   "sidenav": {
