@@ -96,18 +96,19 @@
       "label.auto_apply": "Thema automatisch toepassen na installatie",
       "label.backup_config": "Huidig configuratiebestand back-uppen",
       "label.language": "Taal",
+      "label.theme": "Thema",
       "label.app_version": "App-versie:"
     },
     "tooltip": {
       "tooltip.install_location": "Stel de locatie in waar thema's worden geïnstalleerd.",
       "tooltip.auto_apply": "Pas het thema automatisch toe na installatie.",
       "tooltip.backup_config": "Maak een back-up van het huidige configuratiebestand voordat je een nieuw toepast.",
-      "tooltip.language": "de taal van de applicatie.",
-      "tooltip.theme": "de thema van de applicatie."
+      "tooltip.language": "De taal van de applicatie.",
+      "tooltip.theme": "De thema van de applicatie."
     },
-    "option": {"option": {
-      "option.theme_light": "Light",
-      "option.theme_dark": "Dark"
+    "option": {
+      "option.theme_light": "Licht",
+      "option.theme_dark": "Donker"
     }
   },
   "sidenav": {
@@ -265,4 +266,3 @@
     }
   }
   }
-}
