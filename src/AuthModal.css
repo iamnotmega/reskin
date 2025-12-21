@@ -1,3 +1,20 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-panel: #23272e;
+  --color-text: #ffffff;
+  --color-border: #333a44;
+  --color-tag-bg: #2d333b;
+  --color-tag-text: #adbac7;
+  --color-tag-border: #444c56;
+}
+
+body.reskin-light {
+  --color-bg: #f5f5f5;
+  --color-panel: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #dcdcdc;
+}
+
 * {
-    color: white;
+    color: var(--color-text);
 }

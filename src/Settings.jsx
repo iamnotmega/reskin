@@ -14,6 +14,9 @@ export default function Settings() {
     const [backupConfig, setBackupConfig] = useState(
         localStorage.getItem("reskin_backup_config") === "true" // Back up current configuration file before applying a new one
     );
+    const [theme, setTheme] = useState(
+        localStorage.getItem("reskin_theme") || "dark" // Application theme
+    )
     const [language, setLanguage] = useState(
         localStorage.getItem("reskin_language") || "en" // Application language
     );
@@ -51,6 +54,16 @@ export default function Settings() {
     useEffect(() => {
         localStorage.setItem("reskin_language", language);
     }, [language]);
+
+    useEffect(() => {
+        localStorage.setItem("reskin_theme", theme);
+
+        if (theme === "light") {
+            document.body.classList.add("reskin-light");
+        } else {
+            document.body.classList.remove("reskin-light");
+        }
+    }, [theme]);
 
     // Return HTML content
     return (
@@ -90,6 +103,20 @@ export default function Settings() {
                         checked={backupConfig}
                         onChange={(e) => setBackupConfig(e.target.checked)}
                     />
+                </div>
+                <div className="settings-row">
+                    <label htmlFor="theme" title={t.settings.tooltip["tooltip.theme"]}>
+                        {t.settings.label["label.theme"]}
+                    </label>
+                    <select
+                        id="theme"
+                        value={theme}
+                        onChange={(e) => setTheme(e.target.value)}
+                        style={{ color: "black" }}
+                    >
+                        <option value="dark">{t.settings.option["option.theme_dark"]}</option>
+                        <option value="light">{t.settings.option["option.theme_light"]}</option>
+                    </select>
                 </div>
                 <div className="settings-row">
                     <label htmlFor="language" title={t.settings.tooltip["tooltip.language"]}>

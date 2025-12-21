@@ -1,8 +1,8 @@
 {
   "_META": {
-    "version": "1.5.3",
+    "version": "1.8.0",
     "translators": ["iamnotmega"],
-    "lastEdited": "21/10/2025",
+    "lastEdited": "21/12/2025",
     "language": "Eesti"
   },
   "authmodal": {
@@ -94,17 +94,20 @@
       "label.install_location": "Teema paigaldamise asukoht:",
       "label.auto_apply": "Automaatselt rakenda teema pärast paigaldamist",
       "label.backup_config": "Varunda praegune konfiguratsioonifail",
+      "label.theme": "Teema",
       "label.language": "Keel",
       "label.app_version": "Rakenduse versioon:"
     },
     "tooltip": {
       "tooltip.install_location": "Vali asukoht kuhu paigaldatakse teemad.",
       "tooltip.auto_apply": "Automaatselt rakenda teema pärast selle paigaldamist.",
-      "tooltip.backup_config": "Varuna praegune konfiguratsioonifail enne selle asendamist.",
+      "tooltip.backup_config": "Varunda praegune konfiguratsioonifail enne selle asendamist.",
+      "tooltip.theme": "Rakenduse teema.",
       "tooltip.language": "Rakenduse keel."
     },
     "option": {
-      "option.language_en": "Inglise"
+      "option.theme_light": "Hele",
+      "option.theme_dark": "Tume"
     }
   },
   "sidenav": {

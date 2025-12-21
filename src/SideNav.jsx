@@ -59,7 +59,6 @@ export default function ({ onNavigate, user, setUser }) {
             zIndex: 2001,
             width: "48px",
             height: "48px",
-            background: "rgba(40,40,40,0.9)",
             border: "none",
             borderRadius: "12px",
             display: "flex",
@@ -69,7 +68,7 @@ export default function ({ onNavigate, user, setUser }) {
             cursor: "pointer"
           }}
         >
-          <span style={{ fontSize: "28px", color: "#fff" }}>☰</span>
+          <span style={{ fontSize: "28px", color: "var(--color-text)" }}>☰</span>
         </button>
       )}
 
@@ -82,8 +81,6 @@ export default function ({ onNavigate, user, setUser }) {
             left: "0",
             width: 340,
             height: `calc(100vh - 3rem)`,
-            background: "rgba(24,24,24,0.98)",
-            boxShadow: "2px 0 24px rgba(0,0,0,0.25)",
             zIndex: 2000,
             display: "flex",
             flexDirection: "column",
@@ -100,7 +97,7 @@ export default function ({ onNavigate, user, setUser }) {
               right: 24,
               width: 48,
               height: 48,
-              background: 'rgba(40,40,40,0.9)',
+              background: 'var(--color-bg)',
               border: 'none',
               borderRadius: '12px',
               display: 'flex',
@@ -110,7 +107,7 @@ export default function ({ onNavigate, user, setUser }) {
               cursor: 'pointer'
             }}
           >
-            <span style={{ fontSize: 28, color: '#fff' }}>✖</span>
+            <span style={{ fontSize: 28, color: 'var(--color-text)' }}>✖</span>
           </button>
 
           {/* Login section at top */}
@@ -120,7 +117,7 @@ export default function ({ onNavigate, user, setUser }) {
             gap: 16,
             padding: '32px 24px 18px 24px',
             borderBottom: '1px solid #333',
-            background: 'rgba(32,32,32,0.98)'
+            background: 'var(--color-panel)'
           }}>
             {user ? (
               <></>
@@ -156,11 +153,11 @@ export default function ({ onNavigate, user, setUser }) {
                   display: "flex",
                   alignItems: "center",
                   gap: 18,
-                  fontSize: "1.25rem",
+                  fontSize: "1.2rem",
                   fontWeight: 500,
-                  background: idx === 0 ? "#fff" : "rgba(40,40,40,0.2)",
-                  color: idx === 0 ? "#222" : "#fff",
-                  border: "none",
+                  background: idx === 0 ? "var(--color-active-bg)" : "var(--color-tag-bg)",
+                  color: idx === 0 ? "var(--color-bg)" : "var(--color-text)",
+                  border: "1px solid var(--color-border)",
                   borderRadius: 24,
                   padding: "12px 32px",
                   margin: "0 24px",

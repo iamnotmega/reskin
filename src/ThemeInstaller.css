@@ -1,16 +1,33 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-panel: #23272e;
+  --color-text: #ffffff;
+  --color-border: #333a44;
+  --color-tag-bg: #2d333b;
+  --color-tag-text: #adbac7;
+  --color-tag-border: #444c56;
+}
+
+body.reskin-light {
+  --color-bg: #f5f5f5;
+  --color-panel: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #dcdcdc;
+}
+
 #folder-area {
   border: 2px dashed #555;
   border-radius: 8px;
   padding: 3rem;
   text-align: center;
-  background: #2e2e3e;
+  background: var(--color-bg);
   margin-bottom: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .theme-info-preview {
-  background: #2e2e3e;
+  background: var(--color-bg);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -18,7 +35,7 @@
 
 #theme-info {
   font-size: 0.9rem;
-  background: #23233a;
+  background: var(--color-bg);
   border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -41,7 +58,7 @@
   font-size: 1rem;
   border: none;
   border-radius: 6px;
-  background: 50fa7b;
+  background: var(--color-bg);
   color: #fff;
   cursor: pointer;
   font-weight: "bold";
@@ -51,7 +68,7 @@
   margin-top: 1rem;
   padding: 0.5rem;
   border-radius: 4px;
-  background: #2e2e3e;
+  background: var(--color-bg);
 }
 
 #theme-installer-root {

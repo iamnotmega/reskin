@@ -1,3 +1,20 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-panel: #23272e;
+  --color-text: #ffffff;
+  --color-border: #333a44;
+  --color-tag-bg: #2d333b;
+  --color-tag-text: #adbac7;
+  --color-tag-border: #444c56;
+}
+
+body.reskin-light {
+  --color-bg: #f5f5f5;
+  --color-panel: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #dcdcdc;
+}
+
 .themebundler-root {
   font-family: sans-serif;
   max-width: 700px;
@@ -19,9 +36,9 @@
   margin-bottom: 12px;
   padding: 12px;
   border-radius: 4px;
-  border: none;
-  background: #333;
-  color: #fff;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-size: 1rem;
 }
 .themebundler-input-name {
@@ -41,9 +58,9 @@
   margin-bottom: 12px;
   padding: 12px;
   border-radius: 4px;
-  border: none;
-  background: #333;
-  color: #fff;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-size: 1rem;
   min-height: 60px;
 }
@@ -60,30 +77,30 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  background: #333;
+  background: var(--color-bg);
   border-radius: 4px;
   padding: 8px;
   min-width: 120px;
 }
 .themebundler-tag-chip {
-  background: #444;
+  background: var(--color-bg);
   border-radius: 12px;
   padding: 4px 10px;
-  color: #fff;
+  color: var(--color-text);
   display: flex;
   align-items: center;
 }
 .themebundler-tag-remove {
   margin-left: 6px;
-  background: none;
+  background: var(--color-bg);
   border: none;
-  color: #fff;
+  color: var(--color-text);
   cursor: pointer;
 }
 .themebundler-tag-input {
-  background: transparent;
+  background: var(--color-bg);
   border: none;
-  color: #fff;
+  color: var(--color-text);
   outline: none;
   min-width: 80px;
 }
@@ -92,14 +109,14 @@
   border-radius: 8px;
   padding: 3rem;
   text-align: center;
-  background: #2e2e3e;
+  background: var(--color-bg);
   margin-bottom: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .themebundler-dropzone-active {
   border-color: #89b4fa;
-  background: #2a2a3e;
+  background: var(--color-bg);
 }
 .themebundler-dropzone-desc {
   font-size: 0.9rem;
@@ -112,13 +129,13 @@
   font-size: 1rem;
   border: none;
   border-radius: 6px;
-  background: #89b4fa;
+  background: var(--color-bg);
   color: #000;
   cursor: pointer;
   font-weight: bold;
 }
 .themebundler-bundle-btn-disabled {
-  background: #555;
+  background: var(--color-bg);
   color: #000;
   cursor: not-allowed;
 }
@@ -126,5 +143,5 @@
   margin-top: 1rem;
   padding: 0.5rem;
   border-radius: 4px;
-  background: #2e2e3e;
+  background: var(--color-bg);
 }

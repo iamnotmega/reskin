@@ -1,3 +1,22 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-panel: #23272e;
+  --color-text: #ffffff;
+  --color-border: #333a44;
+  --color-tag-bg: #2d333b;
+  --color-tag-text: #adbac7;
+  --color-tag-border: #444c56;
+  --color-hover: rgba(255, 255, 255, 0.1);
+}
+
+body.reskin-light {
+  --color-bg: #f5f5f5;
+  --color-panel: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #dcdcdc;
+  --color-hover: rgba(0, 0, 0, 0.05);
+}
+
 .titlebar {
   -webkit-app-region: drag;
   position: fixed;
@@ -9,7 +28,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 0.75rem;
-  background-color: #111;
+  background-color: var(--color-bg);
   z-index: 1000;
 }
 
@@ -37,7 +56,7 @@
   -webkit-app-region: no-drag;
   border: none;
   background: transparent;
-  color: white;
+  color: var(--color-text);
   padding: 0.5rem;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -48,5 +67,5 @@
 }
 
 .titlebar-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-hover);
 }
