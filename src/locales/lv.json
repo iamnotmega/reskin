@@ -95,7 +95,8 @@
         "label.auto_apply": "Automātiski pielietot tēmu pēc instalēšanas",
         "label.backup_config": "Atstatīt pašreizējo konfigurācijas failu pirms jaunās konfigurācijas ieviešanas",
         "label.language": "Valoda",
-        "label.app_version": "Programmas versija:"
+        "label.app_version": "Programmas versija:",
+        "label.theme": "Tēma"
       },
       "tooltip": {
         "tooltip.install_location": "Iestatiet tēmu instalēšanas vietu.",
@@ -104,7 +105,8 @@
         "tooltip.language": "Programmas valoda."
       },
       "option": {
-        "option.language_en": "Angļu"
+        "option.theme_light": "Gaismas",
+        "option.theme_dark": "Tumšs"
       }
     },
     "sidenav": {
