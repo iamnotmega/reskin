@@ -6,37 +6,40 @@ import { getTranslationObject, getLanguageOptions } from "./locales/index.js";
 
 export default function Settings() {
     const [installLocation, setInstallLocation] = useState(
-        localStorage.getItem("reskin_install_location") || "~/.themes"
+        localStorage.getItem("reskin_install_location") || "~/.themes" // Install location for themes
     );
     const [autoApply, setAutoApply] = useState(
-        localStorage.getItem("reskin_auto_apply") === "true"
+        localStorage.getItem("reskin_auto_apply") === "true" // Automatically apply themes after installation
     );
     const [backupConfig, setBackupConfig] = useState(
-        localStorage.getItem("reskin_backup_config") === "true"
+        localStorage.getItem("reskin_backup_config") === "true" // Back up current configuration file before applying a new one
     );
+    const [theme, setTheme] = useState(
+        localStorage.getItem("reskin_theme") || "dark" // Application theme
+    )
     const [language, setLanguage] = useState(
-        localStorage.getItem("reskin_language") || "en"
+        localStorage.getItem("reskin_language") || "en" // Application language
     );
-    const [appVersion, setAppVersion] = useState("Unknown");
+    const [appVersion, setAppVersion] = useState("Unknown"); // Application version
     const [fade, setFade] = useState(false);
 
-    const t = getTranslationObject(language);
-    const languageOptions = getLanguageOptions();
+    const t = getTranslationObject(language); // Translation object
+    const languageOptions = getLanguageOptions(); // Get available language options
 
     useEffect(() => {
         const getVersion = async () => {
             try {
-                const ver = await invoke("get_app_version");
-                setAppVersion(ver || "Unknown");
+                const ver = await invoke("get_app_version"); // Get app version
+                setAppVersion(ver || "Unknown"); // Set app version to obtained version or fallback to Unknown
             } catch (err) {
-                console.error("Failed to get app version:", err);
+                console.error("Failed to get app version:", err); // Throw error on failure
                 setAppVersion(`Unknown (${err?.toString() || "error"})`);
             }
         };
         getVersion();
     }, []);
 
-    useEffect(() => {
+    useEffect(() => { // Set localStorage entries for the settings to match the frontend
         localStorage.setItem("reskin_install_location", installLocation);
     }, [installLocation]);
 
@@ -52,6 +55,17 @@ export default function Settings() {
         localStorage.setItem("reskin_language", language);
     }, [language]);
 
+    useEffect(() => {
+        localStorage.setItem("reskin_theme", theme);
+
+        if (theme === "light") {
+            document.body.classList.add("reskin-light");
+        } else {
+            document.body.classList.remove("reskin-light");
+        }
+    }, [theme]);
+
+    // Return HTML content
     return (
         <div className={`settings-container${fade ? " settings-fade" : ""}`}>
             <h2>{t.settings["title"]}</h2>
@@ -89,6 +103,20 @@ export default function Settings() {
                         checked={backupConfig}
                         onChange={(e) => setBackupConfig(e.target.checked)}
                     />
+                </div>
+                <div className="settings-row">
+                    <label htmlFor="theme" title={t.settings.tooltip["tooltip.theme"]}>
+                        {t.settings.label["label.theme"]}
+                    </label>
+                    <select
+                        id="theme"
+                        value={theme}
+                        onChange={(e) => setTheme(e.target.value)}
+                        style={{ color: "black" }}
+                    >
+                        <option value="dark">{t.settings.option["option.theme_dark"]}</option>
+                        <option value="light">{t.settings.option["option.theme_light"]}</option>
+                    </select>
                 </div>
                 <div className="settings-row">
                     <label htmlFor="language" title={t.settings.tooltip["tooltip.language"]}>

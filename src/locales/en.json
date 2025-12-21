@@ -1,8 +1,8 @@
 {
   "_META": {
-    "version": "1.5.0",
+    "version": "1.8.0",
     "translators": ["iamnotmega"],
-    "lastEdited": "18/10/2025",
+    "lastEdited": "21/12/2025",
     "language": "English"
   },
   "authmodal": {
@@ -95,16 +95,19 @@
       "label.auto_apply": "Automatically apply theme after installation",
       "label.backup_config": "Backup current configuration file",
       "label.language": "Language",
-      "label.app_version": "App Version:"
+      "label.app_version": "App Version:",
+      "label.theme": "Theme"
     },
     "tooltip": {
       "tooltip.install_location": "Set the location where themes get installed.",
       "tooltip.auto_apply": "Automatically apply the theme after it is installed.",
       "tooltip.backup_config": "Back up the current configuration file before applying a new one.",
-      "tooltip.language": "The language of the application."
+      "tooltip.language": "The language of the application.",
+      "tooltip.theme": "The theme of the application."
     },
     "option": {
-      "option.language_en": "English"
+      "option.theme_light": "Light",
+      "option.theme_dark": "Dark"
     }
   },
   "sidenav": {

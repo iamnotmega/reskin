@@ -12,25 +12,24 @@ const databases = new Databases(client);
 const account = new Account(client);
 
 export default function ThemeDetails({ theme, onBack }) {
-  // Use stored language or fallback to English
-  const language = localStorage.getItem("reskin_language") || "en";
-  const t = getTranslationObject(language);
+  const language = localStorage.getItem("reskin_language") || "en"; // Use selected language or fall back to English
+  const t = getTranslationObject(language); // Translation object
 
-  const [manifest, setManifest] = useState(theme);
-  const [isInstalled, setIsInstalled] = useState(false);
-  const databaseId = "reskin";
-  const collectionId = "reports";
+  const [manifest, setManifest] = useState(theme); // Theme manifest
+  const [isInstalled, setIsInstalled] = useState(false); // Installation state
+  const databaseId = "reskin"; // Database ID
+  const collectionId = "reports"; // Reports collection ID
 
   useEffect(() => {
     async function checkIfInstalled() {
-      const homeDir = `/home/${window.process?.env?.USER || 'user'}`;
+      const homeDir = `/home/${window.process?.env?.USER || 'user'}`; // Get user's home directory
       try {
-        const bundlePath = `${homeDir}/.themes/${theme.name}/reskin.json`;
-        const realManifest = await invoke('extract_theme_info_from_file', { filePath: bundlePath });
-        setManifest(realManifest);
-        setIsInstalled(true);
+        const bundlePath = `${homeDir}/.themes/${theme.name}/reskin.json`; // Manifest path in the installed theme
+        const realManifest = await invoke('extract_theme_info_from_file', { filePath: bundlePath }); // Extract theme manifest to the manifest path
+        setManifest(realManifest); // Set manifest to the extracted manifest
+        setIsInstalled(true); // Set installation state to true
       } catch {
-        setManifest(theme);
+        setManifest(theme); 
         setIsInstalled(false);
       }
     }
@@ -39,36 +38,36 @@ export default function ThemeDetails({ theme, onBack }) {
 
   if (!manifest) return <div style={{ padding: 40 }}>{t.themedetails.status["loading"]}</div>;
 
-  const handleApply = async () => {
+  const handleApply = async () => { // Handle theme application
     if (!manifest || !manifest.name) return;
     try {
-      await invoke('apply_theme', { themeName: manifest.name });
+      await invoke('apply_theme', { themeName: manifest.name }); // Attempt to apply theme
     } catch (e) {
-      console.error('Apply Theme error:', e);
+      console.error('Apply Theme error:', e); // Throw error on failure
     }
   };
 
-  const handleInstall = async () => {
+  const handleInstall = async () => { // Handle theme installation
     if (!manifest || !manifest.file) return;
     try {
-      await invoke('download_theme', {
+      await invoke('download_theme', { // Download theme from the marketplace
         themeFileId: manifest.file,
         themeName: manifest.name,
       });
-      setIsInstalled(true);
-      alert(t.themedetails.status["install_success"]);
-    } catch (e) {
+      setIsInstalled(true); // Set installation state to true
+      alert(t.themedetails.status["install_success"]); // Return success
+    } catch (e) { // Throw error on failure
       console.error('Download Theme error:', e);
       alert(t.themedetails.status["install_failure"]);
     }
   };
 
-  const handleButtonAction = isInstalled ? handleApply : handleInstall;
+  const handleButtonAction = isInstalled ? handleApply : handleInstall; // Install or apply the theme depending on the installation state
 
-  const getUser = async () => {
+  const getUser = async () => { // Get logged in user
     let user = JSON.parse(localStorage.getItem("reskin_user"));
     if (user && user.$id) return user;
-    try {
+    try { 
       user = await account.get();
       localStorage.setItem("reskin_user", JSON.stringify(user));
       return user;
@@ -77,20 +76,20 @@ export default function ThemeDetails({ theme, onBack }) {
     }
   };
 
-  const handleReport = async () => {
+  const handleReport = async () => { // Handle reporting
     const reason = prompt(t.themedetails.prompt["prompt.report_reason"]);
-    if (!reason) return;
+    if (!reason) return; // Throw an error if no reason is provided
 
     try {
-      const user = await getUser();
-      const reportData = {
-        themeId: theme.$id || manifest.$id,
-        reporterId: user?.$id || "anonymous",
-        reason,
+      const user = await getUser(); // Get logged in user
+      const reportData = { // Report data
+        themeId: theme.$id || manifest.$id, // Reported theme ID
+        reporterId: user?.$id || "anonymous", // Reporter's user ID, fall back to anonymous if no user is logged in
+        reason, // Report reason
       };
-      await databases.createDocument(databaseId, collectionId, ID.unique(), reportData);
-      alert(t.themedetails.status["report_submitted"]);
-    } catch (err) {
+      await databases.createDocument(databaseId, collectionId, ID.unique(), reportData); // Create document with report data on Appwrite
+      alert(t.themedetails.status["report_submitted"]); // Return success
+    } catch (err) { // Throw error on failure
       console.error(err);
       alert(t.themedetails.status["report_failure"]);
     }
@@ -98,6 +97,7 @@ export default function ThemeDetails({ theme, onBack }) {
 
   const previewSrc = manifest.preview;
 
+  // Return HTML content
   return (
     <div style={{ minHeight: "100vh", padding: "40px", fontFamily: "Inter, sans-serif" }}>
       <button onClick={onBack} style={{ background: "none", border: "none", fontSize: "2rem", cursor: "pointer", marginBottom: "24px" }}>←</button>

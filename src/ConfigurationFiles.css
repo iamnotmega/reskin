@@ -1,3 +1,20 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-panel: #23272e;
+  --color-text: #ffffff;
+  --color-border: #333a44;
+  --color-tag-bg: #2d333b;
+  --color-tag-text: #adbac7;
+  --color-tag-border: #444c56;
+}
+
+body.reskin-light {
+  --color-bg: #f5f5f5;
+  --color-panel: #ffffff;
+  --color-text: #1a1a1a;
+  --color-border: #dcdcdc;
+}
+
 #config-installer-root {
   font-family: "sans-serif";
   max-width: 600px;
@@ -14,7 +31,7 @@ h1 {
 }
 
 .configType {
-    color: black;
+    color: var(--color-text);
 }
 
 #folder-area {
@@ -30,7 +47,7 @@ h1 {
 
 .hint-text {
   font-size: 0.9rem;
-  color: #aaa;
+  color: var(--color-text);
 }
 
 #config-info-preview {
@@ -53,7 +70,7 @@ h1 {
 }
 
 #config-info strong {
-  color: #89b4fa;
+  color: var(--color-text)
 }
 
 #apply-button {
@@ -66,7 +83,7 @@ h1 {
   border: none;
   border-radius: 6px;
   background: #50fa7b;
-  color: #fff;
+  color: var(--color-text);
   cursor: pointer;
   font-weight: bold;
 }

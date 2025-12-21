@@ -1,8 +1,8 @@
 {
 "_META": {
-    "version": "1.5.0",
+    "version": "1.8.0",
     "translators": ["east.mirage"],
-    "lastEdited": "18/10/2025",
+    "lastEdited": "21/12/2025",
     "language": "Türkçe"
   },
   "authmodal": {
@@ -95,17 +95,19 @@
       "label.auto_apply": "Tema yüklendikten sonra otomatik uygula",
       "label.backup_config": "Mevcut yapılandırma dosyasını yedekle",
       "label.language": "Dil",
-      "label.app_version": "Uygulama Sürümü:"
+      "label.app_version": "Uygulama Sürümü:",
+      "label.theme": "Tema"
     },
     "tooltip": {
       "tooltip.install_location": "Temaların yükleneceği konumu belirleyin.",
       "tooltip.auto_apply": "Tema yüklendikten sonra otomatik olarak uygula.",
       "tooltip.backup_config": "Yeni bir tema uygulamadan önce mevcut yapılandırma dosyasını yedekle.",
-      "tooltip.language": "Uygulamanın dili."
+      "tooltip.language": "Uygulamanın dili.",
+      "tooltip.theme": "Uygulamanın teması."
     },
     "option": {
-      "option.language_en": "English",
-      "option_language_tr": "Türkçe"
+      "option.theme_light": "Açık",
+      "option.theme_dark": "Koyu"
     }
   },
   "sidenav": {

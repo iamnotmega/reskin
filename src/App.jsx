@@ -5,7 +5,7 @@ import ThemeBundler from "./ThemeBundler";
 import ThemeInstaller from "./ThemeInstaller";
 import SideNav from "./SideNav";
 import Titlebar from "./Titlebar";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import ThemeDetails from "./ThemeDetails";
 import Settings from "./Settings";
@@ -19,6 +19,15 @@ export default function App(props) {
   const [selectedTheme, setSelectedTheme] = useState(null); // Selected theme
   const [user, setUser] = useState(null); // Currently logged in user
 
+  // Set proper application theme
+  useLayoutEffect(() => {
+	const savedTheme = localStorage.getItem("reskin_theme") || "dark"; // Get set application theme or fall back to dark
+	if (savedTheme === "light") {
+		document.body.classList.add("reskin-light");
+	} else {
+		document.body.classList.remove("reskin-light");
+	}
+  }, []);
 
   // Get recently installed themes from localStorage
   useEffect(() => {

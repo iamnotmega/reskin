@@ -24,16 +24,16 @@ const configMap = {
 };
 
 export default function ConfigInstaller() {
-  const language = localStorage.getItem("reskin_language") || "en";
-  const t = getTranslationObject(language);
+  const language = localStorage.getItem("reskin_language") || "en"; // Get selected language or fallback to English
+  const t = getTranslationObject(language); // Translation object
 
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [configType, setConfigType] = useState("");
-  const [status, setStatus] = useState("");
-  const [customPath, setCustomPath] = useState("");
-  const [customName, setCustomName] = useState("");
-  const [editingFile, setEditingFile] = useState(false);
-  const [editingPath, setEditingPath] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null); // Selected file
+  const [configType, setConfigType] = useState(""); // Selected config type
+  const [status, setStatus] = useState(""); // Status message
+  const [customPath, setCustomPath] = useState(""); // Custom path
+  const [customName, setCustomName] = useState(""); // Custom name
+  const [editingFile, setEditingFile] = useState(false); // Editing filename
+  const [editingPath, setEditingPath] = useState(false); // Editing file path
 
   const getMatchingConfigType = (path, name) => {
     for (const [type, dest] of Object.entries(configMap)) {
@@ -42,7 +42,7 @@ export default function ConfigInstaller() {
     return "custom";
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e) => { // Handle file change
     if (e.target.files.length > 0) {
       setSelectedFile(e.target.files[0]);
       setCustomName(e.target.files[0].name);
@@ -52,9 +52,9 @@ export default function ConfigInstaller() {
     }
   };
 
-  const handleApply = async () => {
+  const handleApply = async () => { // Handle config file application
     if (!selectedFile || (!configType && !customPath)) {
-      setStatus(t.configurationfiles.status["status.no_file"]);
+      setStatus(t.configurationfiles.status["status.no_file"]); // Throw error when there is no config file or type selected
       return;
     }
 
@@ -62,13 +62,13 @@ export default function ConfigInstaller() {
       ? `${customPath}/${customName}`
       : configMap[configType];
 
-    const backupConfig = localStorage.getItem("reskin_backup_config");
+    const backupConfig = localStorage.getItem("reskin_backup_config"); // Backup current configuration file before applying a new one
     if (backupConfig) {
       try {
-        await invoke("backup_config_file", { srcPath: destPath });
+        await invoke("backup_config_file", { srcPath: destPath }); // Backup current config if setting is enabled
         console.log("Backup created successfully");
       } catch (err) {
-        console.warn("Backup failed:", err);
+        console.warn("Backup failed:", err); // Throw error on failure
         return;
       }
     }
@@ -77,18 +77,19 @@ export default function ConfigInstaller() {
     try {
       const arrayBuffer = await selectedFile.arrayBuffer();
       const fileData = Array.from(new Uint8Array(arrayBuffer));
-      await invoke("apply_config_file", {
+      await invoke("apply_config_file", { // Apply the config file
         fileData,
         fileName: selectedFile.name,
         destPath
       });
-      setStatus(t.configurationfiles.status["status.success"]);
+      setStatus(t.configurationfiles.status["status.success"]); // Return success
     } catch (err) {
       console.error(err);
-      setStatus(t.configurationfiles.status["status.failure"]);
+      setStatus(t.configurationfiles.status["status.failure"]); // Throw error on failure
     }
   };
 
+  // Return HTML content
   return (
     <div className={`reskin-${localStorage.getItem("reskin_theme") || "dark"}`}>
       <h1>{t.configurationfiles.title}</h1>

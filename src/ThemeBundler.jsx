@@ -232,7 +232,7 @@ export default function ThemeBundler() {
               onChange={handleInputChange}
               required
               className={`settings-dropdown`}
-              style={{ color: "black" }}
+              style={{ color: "var(--color-text)" }}
             >
               <option value="">{t.bundler.manifest.license_default}</option>
               <option value="MIT">MIT</option>
