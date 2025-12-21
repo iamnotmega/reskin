@@ -95,7 +95,8 @@
       "label.auto_apply": "Tema yüklendikten sonra otomatik uygula",
       "label.backup_config": "Mevcut yapılandırma dosyasını yedekle",
       "label.language": "Dil",
-      "label.app_version": "Uygulama Sürümü:"
+      "label.app_version": "Uygulama Sürümü:",
+      "label.theme": "Tema"
     },
     "tooltip": {
       "tooltip.install_location": "Temaların yükleneceği konumu belirleyin.",
