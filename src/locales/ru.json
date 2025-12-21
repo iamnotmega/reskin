@@ -1,8 +1,8 @@
 {
   "_META": {
-    "version": "1.7.0",
+    "version": "1.8.0",
     "translators": ["MarioWithTheCrowbar"],
-    "lastEdited": "30/11/2025",
+    "lastEdited": "21/12/2025",
     "language": "Русский"
   },
   "authmodal": {
@@ -96,15 +96,18 @@
       "label.backup_config": "Создать резервную копию файла конфигурации",
       "label.language": "Язык",
       "label.app_version": "Версия Приложения:"
+      "label.theme": "Тема"
     },
     "tooltip": {
       "tooltip.install_location": "Устанавливает путь загрузки тем.",
       "tooltip.auto_apply": "Применяет тему автоматически после загрузки.",
       "tooltip.backup_config": "Делает резевную копию текущего файла конфигурации до применения нового.",
       "tooltip.language": "Язык приложения."
+      "tooltip.theme": "Тема приложения."
     },
     "option": {
-      "option.language_en": "Английский"
+      "option.theme_light": "Светлая",
+      "option.theme_dark": "Тёмная"
     }
   },
   "sidenav": {
