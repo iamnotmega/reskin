@@ -18,6 +18,16 @@ export default function ({ onNavigate, user, setUser }) {
   // Define side navigation component states
   const [open, setOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false) // Define if side navigation should render
+
+  useEffect(() => {
+    if (open) {
+      setShouldRender(true);
+    } else {
+      const timer = setTimeout(() => setShouldRender(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
   // Set the current user to the userObj variable
   const handleAuth = (userObj) => {
@@ -47,7 +57,7 @@ export default function ({ onNavigate, user, setUser }) {
   // Return HTML content
   return (
     <>
-      {!open && (
+      {!open && !shouldRender && (
         <button
           className="hamburger-btn"
           onClick={() => setOpen(true)}
@@ -72,9 +82,9 @@ export default function ({ onNavigate, user, setUser }) {
         </button>
       )}
 
-      {open && (
+      {shouldRender && (
         <div
-          className="sidenav-overlay"
+          className={`sidenav-overlay ${!open ? "closing" : ""}`}
           style={{
             position: "fixed",
             top: "3rem",
@@ -84,7 +94,8 @@ export default function ({ onNavigate, user, setUser }) {
             zIndex: 2000,
             display: "flex",
             flexDirection: "column",
-            padding: 0
+            padding: 0,
+            transition: "opacity 0.25s ease, transform 0.25s cubic-bezier(.4,0,.2,1)"
           }}
         >
           {/* X button at top right of overlay */}
